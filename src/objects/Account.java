@@ -1,3 +1,4 @@
+package objects;
 import java.util.ArrayList;
 
 public class Account {
@@ -6,7 +7,7 @@ public class Account {
 	String SecQuestion;
 	private String SecAnswer;
 	ArrayList<Course> CourseList;
-	int SQLID;
+	int accountID;
 	
 	public Account(String name) {
 		this.Username=name;
