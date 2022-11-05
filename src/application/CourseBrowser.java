@@ -20,6 +20,8 @@ public class CourseBrowser {
 	@FXML
 	private Button rename;
 	@FXML
+	private Button logout;
+	@FXML
 	ComboBox<String> dropdownCourse= new ComboBox<>();
 	
 	
@@ -56,7 +58,10 @@ public class CourseBrowser {
 		 Main m = new Main();
 	     m.changeScene("CourseBrowser.fxml");
 	}
-	
+	public void logout(ActionEvent event) throws IOException {
+		 Main m = new Main();
+	     m.changeScene("logout.fxml");
+	}
 	
 	 
 }
