@@ -1,9 +1,11 @@
 package application;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.contro.ComboBox;
+import javafx.scene.control.*;
 
 
 import javafx.fxml.FXML;
@@ -15,9 +17,17 @@ public class CourseBrowser {
     private Button view;
 	@FXML
 	private Button delete;
-	ArrayList<String> options= Main.getCurrAcc().CourseListName;
-	@FXMl
-	private Combobox dropdownCourse= new ComboBox(options);
+	@FXML
+	private Button rename;
+	@FXML
+	ComboBox<String> dropdownCourse= new ComboBox<>();
+	
+	
+	// must call it upon creating to popular dropdown
+	public void Creation() {
+		ArrayList<String> options= Main.getCurrAcc().CourseListName;
+		dropdownCourse.setItems((ObservableList<String>) options);
+	}
 	
 	public void goToChosenCourse(ActionEvent event) throws IOException {
 		 Main m = new Main();
@@ -25,9 +35,22 @@ public class CourseBrowser {
 	     
 	}
 	public void goToCreateScreen(ActionEvent event) throws IOException {
-		 Main.setCurrentCourse(dropdownCourse.getSelectedItem());
+		for(int i=0; i< Main.getCurrAcc().CourseList.size(); i++) {
+			if(Main.getCurrAcc().CourseList.get(i).Name== dropdownCourse.getValue()) {
+				Main.setCurrentCourse( Main.getCurrAcc().CourseList.get(i));
+			}
+		}
 		 Main m = new Main();
 	     m.changeScene("CreateCourse.fxml");
+	}
+	public void goToRenameScreen (ActionEvent event) throws IOException {
+		for(int i=0; i< Main.getCurrAcc().CourseList.size(); i++) {
+			if(Main.getCurrAcc().CourseList.get(i).Name== dropdownCourse.getValue()) {
+				Main.setCurrentCourse( Main.getCurrAcc().CourseList.get(i));
+			}
+		}
+		Main m = new Main();
+	    m.changeScene("RenameCourse.fxml");
 	}
 	public void RefreshAfterDeletion(ActionEvent event) throws IOException {
 		 Main m = new Main();

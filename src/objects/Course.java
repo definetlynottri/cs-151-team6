@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import sql.DBAccess;
 
 public class Course {
-	String Name;
+	public String Name;
 	ArrayList<Card> CardList;
 	int courseID;
 	
