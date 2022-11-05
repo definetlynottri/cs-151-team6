@@ -1,3 +1,4 @@
+/*
 import sql.DBAccess;
 import objects.*;
 
@@ -7,6 +8,7 @@ public class main {
 		
 		
 		// Random SQL tests, delete later
+		
 		//DBAccess.insertAccount("bob", "builder");
 		//DBAccess.insertCourse("nope101", 1);
 		//DBAccess.insertCard("uText1", "lText1", false, 1);
@@ -20,6 +22,9 @@ public class main {
 		//System.out.println(course);
 		//course.addCard(new Card("uText7", "lText7"));
 		//System.out.println(course);
+		
+		//System.out.println(DBAccess.checkLogin("bob", "builder"));
 	}
 
 }
+*/

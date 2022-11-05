@@ -231,4 +231,21 @@ public class DBAccess {
 	    }
 		return course;
 	}
+	
+	public final static int checkLogin(String username, String password) {
+		String sql = "SELECT id FROM accounts WHERE username=? AND password=?";
+		try {
+			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);
+			pStatement.setString(1, username);
+			pStatement.setString(2, password);
+			ResultSet rs = pStatement.executeQuery();
+			// get results
+			if(rs.next())
+				return rs.getInt("id"); // returns the resultant account id
+		} catch (SQLException e) {
+	        System.out.println(e.getMessage());
+	    }
+		return -1; // return -1 if incorrect
+	}
+	
 }

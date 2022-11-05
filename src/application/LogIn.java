@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sql.DBAccess;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
@@ -42,7 +43,19 @@ public class LogIn {
     }
 
     private void checkLogin() throws IOException {
-        
+        if(username.getText().isEmpty() || password.getText().isEmpty()) 
+        	wrongLogIn.setText("Please enter your data.");
+        else {
+        	String uName = username.getText();
+        	String pass = password.getText();
+        	int result = DBAccess.checkLogin(uName, pass);
+            if(result != -1) {
+            	System.out.println("Success! AccountID:" + result);
+                m.changeScene("afterLogin.fxml");
+            } else 
+            	wrongLogIn.setText("Wrong username or password!");
+        }
+    	/*
         if(username.getText().toString().equals("javafx") && password.getText().toString().equals("151")) {
             wrongLogIn.setText("Success!");
 
@@ -52,5 +65,6 @@ public class LogIn {
         } else {
             wrongLogIn.setText("Wrong username or password!");
         }
+        */
     }
 }
