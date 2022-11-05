@@ -18,8 +18,7 @@
                </font>
             </Label>
             <Button fx:id="create" layoutX="382.0" layoutY="154.0" mnemonicParsing="false" onAction="#goToCreateScreen" prefHeight="33.0" prefWidth="74.0" text="Create" />
-            <Button fx:id="view" layoutX="382.0" layoutY="201.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="74.0" text="View" />
-            <Button fx:id="delete" layoutX="382.0" layoutY="250.0" mnemonicParsing="false" onAction="#RefreshAfterDeletion" prefHeight="33.0" prefWidth="74.0" text="Delete" />
+            <Button fx:id="view" layoutX="382.0" layoutY="201.0" mnemonicParsing="false" onAction="#goToChosenCourse" prefHeight="33.0" prefWidth="74.0" text="View" />            <Button fx:id="delete" layoutX="382.0" layoutY="250.0" mnemonicParsing="false" onAction="#RefreshAfterDeletion" prefHeight="33.0" prefWidth="74.0" text="Delete" />
             <ComboBox fx:id="dropdownCourse" layoutX="381.0" layoutY="53.0" onAction="#Creation" prefWidth="150.0" />
             <Button fx:id="rename" layoutX="382.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToRenameScreen" prefHeight="33.0" prefWidth="74.0" text="Rename" />
             <Button fx:id="logout" layoutX="516.0" layoutY="354.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
