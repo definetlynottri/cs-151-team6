@@ -283,9 +283,7 @@ public class DBAccess {
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
 			ResultSet rs = statement.executeQuery("SELECT id, name FROM courses WHERE id =" + courseID);
-			System.out.println("Query Executed");
 			if(rs.next()) {
-				System.out.println("Has Results");
 				ArrayList<Card> arrCards = DBAccess.getCards(courseID);
 				course = new Course(rs.getInt("id"), rs.getString("name"), arrCards);
 			}

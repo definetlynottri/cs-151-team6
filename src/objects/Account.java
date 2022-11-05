@@ -45,13 +45,17 @@ public class Account {
 	
 	public boolean addCourse(String name) {
 		int coursePrimaryKey = DBAccess.insertCourse(name, accountID);
-		System.out.println("Added Course with ID:"+ coursePrimaryKey);
+		//System.out.println("Added Course with ID:"+ coursePrimaryKey);
 		if(coursePrimaryKey>=0) {
-			System.out.println("Trying to load course with ID:"+ coursePrimaryKey);
+			//System.out.println("Trying to load course with ID:"+ coursePrimaryKey);
 			Course newCourse = DBAccess.loadCourse(coursePrimaryKey);
-			System.out.println("loaded course with ID:" + coursePrimaryKey);
+			//System.out.println("loaded course with ID:" + coursePrimaryKey);
 			CourseList.add(newCourse);
-			CourseListName.add(newCourse.Name);
+			
+			//#### Throws ERRORS!
+			//CourseListName.add(newCourse.Name);
+			
+			
 			return true;
 		}
 		return false;
