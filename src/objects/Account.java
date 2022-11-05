@@ -38,7 +38,7 @@ public class Account {
 			return false;
 		}
 		CourseList.remove(removedCard);
-		CourseListName.remove(newCourse.Name);
+		CourseListName.remove(removedCard.Name);
 		return true;
 	}
 	
