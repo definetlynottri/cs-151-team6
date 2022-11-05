@@ -81,10 +81,8 @@ public class Account {
 	public void deleteCourse(String name) {
 		Course delCourse = null;
 		for(Course course:CourseList) {
-			if(course.Name.equals(name)) {
-				System.out.println("Found match for deletion");
+			if(course.Name.equals(name))
 				delCourse = course;
-			}
 		}
 		
 		// Threading purposes

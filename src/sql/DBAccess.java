@@ -135,6 +135,17 @@ public class DBAccess {
 	    }
 	}
 	
+	public final static void renameCourse(String oldName, String newName, int accountID) {
+		String sql = String.format("UPDATE courses SET name=%s WHERE name=%s AND accountID=%d", newName, oldName, accountID);
+		try {
+			Statement statement = DBConnect.getConnection().createStatement();
+			statement.execute(sql);
+			statement.close();
+		} catch (SQLException e) {
+	        System.out.println(e.getMessage());
+	    }
+	}
+	
 	/**
 	 * Modifies the password for an account
 	 * @param accountID the account database id for the password change
