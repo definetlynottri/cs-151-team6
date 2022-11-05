@@ -18,17 +18,20 @@ public class DBAccess {
 	 * @param username the username
 	 * @param password the ENCRYPTED password
 	 */
-	public final static void insertAccount(String username, String password) {
-		String sql = "INSERT INTO accounts(username,password) VALUES(?,?)";
+	public final static boolean insertAccount(String username, String password, String securityQuestion) {
+		String sql = "INSERT INTO accounts(username,password,securityQuestion) VALUES(?,?,?)";
 		try {
 			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);
 			pStatement.setString(1, username);
 			pStatement.setString(2, password);
+			pStatement.setString(3, securityQuestion);
 			pStatement.executeUpdate();
 			pStatement.close();
+			return true;
 		} catch (SQLException e) {
 	        System.out.println(e.getMessage());
 	    }
+		return false;
 	}
 	
 	/**
@@ -232,7 +235,7 @@ public class DBAccess {
 		return course;
 	}
 	
-	public final static int checkLogin(String username, String password) {
+	public final static int checkAccount(String username, String password) {
 		String sql = "SELECT id FROM accounts WHERE username=? AND password=?";
 		try {
 			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);

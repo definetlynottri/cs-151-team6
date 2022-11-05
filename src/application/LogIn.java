@@ -48,7 +48,7 @@ public class LogIn {
         else {
         	String uName = username.getText();
         	String pass = password.getText();
-        	int result = DBAccess.checkLogin(uName, pass);
+        	int result = DBAccess.checkAccount(uName, pass);
             if(result != -1) {
             	System.out.println("Success! AccountID:" + result);
                 m.changeScene("afterLogin.fxml");

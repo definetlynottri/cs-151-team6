@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sql.DBAccess;
 
 public class createAccount {
 	public createAccount() {
@@ -33,6 +34,23 @@ public class createAccount {
 
     private void checkAccount() throws IOException {
         Main m = new Main();
+        
+        if(username.getText().isEmpty() && password.getText().isEmpty() && securityQuestion.getText().isEmpty()) // checks that all fields are entered
+        	invalidInput.setText("Please enter your data.");
+        else if(!password.getText().toString().equals(repassword.getText().toString())) // mismatch passwords
+        	invalidInput.setText("Password not match! Type again");
+        else { // adds the account to the database
+        	String uName = username.getText();
+        	String pass = password.getText();
+        	String sQuest = securityQuestion.getText();
+        	Boolean sqlSuccess = DBAccess.insertAccount(uName, pass, sQuest); // true if inserted into db, false otherwise
+        	if(sqlSuccess) 
+        		m.changeScene("success.fxml");
+        	else
+        		invalidInput.setText("SQL INSERT failure."); // shouldn't be able to see this, is a GUI locking the database?
+        }
+        
+        /*
         if(username.getText().toString().equals("javafx")) {
         	invalidInput.setText("Existing username! Type again");
         } else if(!password.getText().toString().equals(repassword.getText().toString())) {
@@ -42,5 +60,6 @@ public class createAccount {
         } else {
         	m.changeScene("success.fxml");;
         }
+        */
     }
 }

@@ -13,8 +13,9 @@ final class DBConnect {
 			+ "	\"id\"	INTEGER,\r\n"
 			+ "	\"username\"	TEXT NOT NULL UNIQUE,\r\n"
 			+ "	\"password\"	TEXT,\r\n"
+			+ "	\"securityQuestion\"	TEXT,\r\n"
 			+ "	PRIMARY KEY(\"id\")\r\n"
-			+ ");";
+			+ ")";
 	
 	private final static String CREATE_COURSES = "CREATE TABLE IF NOT EXISTS \"courses\" (\r\n"
 			+ "	\"id\"	INTEGER,\r\n"
@@ -22,7 +23,7 @@ final class DBConnect {
 			+ "	\"accountID\"	NUMERIC,\r\n"
 			+ "	PRIMARY KEY(\"id\"),\r\n"
 			+ "	FOREIGN KEY(\"accountID\") REFERENCES \"cards\"(\"id\")\r\n"
-			+ ");";
+			+ ")";
 	
 	private final static String CREATE_CARDS = "CREATE TABLE IF NOT EXISTS \"cards\" (\r\n"
 			+ "	\"id\"	INTEGER,\r\n"
