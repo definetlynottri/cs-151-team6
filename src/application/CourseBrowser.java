@@ -47,7 +47,7 @@ public class CourseBrowser {
 			}
 		}
 		 Main m = new Main();
-	     m.changeScene("CreateCourse.fxml");
+	     m.changeScene("createScreen.fxml");
 	}
 	
 	//goes to rename screen with selected item, uses static course in main to pass to next page
@@ -58,7 +58,7 @@ public class CourseBrowser {
 			}
 		}
 		Main m = new Main();
-	    m.changeScene("RenameCourse.fxml");
+	    m.changeScene("renameCourse.fxml");
 	}
 	
 	// deletes the item then refreshes 
@@ -71,7 +71,7 @@ public class CourseBrowser {
 		}
 		Creation();
 		Main m = new Main();
-	    m.changeScene("CourseBrowser.fxml");
+	    m.changeScene("courseBrowser.fxml");
 	}
 	//add logout
 	public void logout(ActionEvent event) throws IOException {
