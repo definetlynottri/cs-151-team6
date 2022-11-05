@@ -23,15 +23,8 @@ public class RenameCourse {
 		
 		String oldName = currentName.getText();
 		String newName = changingName.getText();
-		Course tCourse = null;
-		for(Course course:Main.getCurrAcc().CourseList) {
-			if(course.Name.equals(oldName))
-				tCourse = course;
-		}
-		if(tCourse !=null) {
-			tCourse.rename(newName);
-		}
-		
+		Main.getCurrAcc().findCourse(oldName).rename(newName);
+		System.out.println(Main.getCurrAcc()); // prints out the current state of the account
 		
 		Main m = new Main();
 	    m.changeScene("courseBrowser.fxml");

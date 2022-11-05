@@ -17,9 +17,9 @@ public class deleteCourse {
 	
 	public void delCourse(ActionEvent event) throws IOException {
 		//String name= Main.getCurrentCourse().getName();
-		System.out.println(name.getText());
-		Main.getCurrAcc().deleteCourse(name.getText());
 		
+		Main.getCurrAcc().deleteCourse(name.getText());
+		System.out.println(Main.getCurrAcc());
 		
 		Main m = new Main();
 	    m.changeScene("courseBrowser.fxml");

@@ -1,6 +1,7 @@
 package objects;
 import java.util.ArrayList;
 
+import application.Main;
 import sql.DBAccess;
 
 public class Account {
@@ -43,6 +44,20 @@ public class Account {
 		return true;
 	}
 	
+	/**
+	 * Finds a course in log(n) time
+	 * @param name the name of the course
+	 * @return the course object found
+	 */
+	public Course findCourse(String name) {
+		Course tCourse = null;
+		for(Course course:CourseList) {
+			if(course.Name.equals(name))
+				tCourse = course;
+		}
+		return tCourse;
+	}
+	
 	public boolean addCourse(String name) {
 		int coursePrimaryKey = DBAccess.insertCourse(name, accountID);
 		//System.out.println("Added Course with ID:"+ coursePrimaryKey);
@@ -55,6 +70,8 @@ public class Account {
 			//#### Throws ERRORS!
 			//CourseListName.add(newCourse.Name);
 			
+			System.out.println(String.format("Added Course Named:%s", newCourse.Name));
+			System.out.println(this);
 			
 			return true;
 		}
@@ -79,16 +96,21 @@ public class Account {
 	 * @param name
 	 */
 	public void deleteCourse(String name) {
+		/*
 		Course delCourse = null;
 		for(Course course:CourseList) {
 			if(course.Name.equals(name))
 				delCourse = course;
 		}
+		*/
+		Course delCourse = findCourse(name);
 		
 		// Threading purposes
 		if(delCourse !=null) {
 			DBAccess.deleteCourse(delCourse.courseID);
 			CourseList.remove(delCourse);
+			System.out.println(String.format("Deleted Course Named:%s", delCourse.Name));
+			System.out.println(this);
 		}
 	}
 	
@@ -114,7 +136,7 @@ public class Account {
 		StringBuilder str = new StringBuilder();
 		str.append(String.format("Account(ID:%d - username:%s - Courses:\n", accountID, Username));
 		for(Course course:CourseList) {
-			str.append(course);
+			str.append("->"+course);
 		}
 		return str.toString();
 	}

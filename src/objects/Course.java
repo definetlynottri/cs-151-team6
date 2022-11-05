@@ -50,6 +50,7 @@ public class Course {
 	}
 	
 	public boolean rename(String newName) {
+		System.out.println(String.format("Renamed Course from %s to %s", this.Name, newName));
 		this.Name= newName;
 		DBAccess.modifyCourse(this.courseID, newName); // updates the name of the course in the db
 		return true;
