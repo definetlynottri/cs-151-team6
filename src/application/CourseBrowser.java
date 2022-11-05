@@ -19,6 +19,7 @@ public class CourseBrowser {
 	private Button delete;
 	@FXML
 	private Button rename;
+	// add logout
 	@FXML
 	private Button logout;
 	@FXML
@@ -58,6 +59,7 @@ public class CourseBrowser {
 		 Main m = new Main();
 	     m.changeScene("CourseBrowser.fxml");
 	}
+	//add logout
 	public void logout(ActionEvent event) throws IOException {
 		 Main m = new Main();
 	     m.changeScene("logout.fxml");
