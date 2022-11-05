@@ -54,6 +54,7 @@ public class LogIn {
             	Account curAccount = DBAccess.loadAccount(result);
             	System.out.println("Loaded Account:");
             	System.out.println(curAccount);
+            	Main.setCurrAcc(curAccount);
                 m.changeScene("afterLogin.fxml");
             } else 
             	wrongLogIn.setText("Wrong username or password!");

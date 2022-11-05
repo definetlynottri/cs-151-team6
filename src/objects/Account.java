@@ -6,7 +6,8 @@ public class Account {
 	private String Username;
 	String SecQuestion;
 	private String SecAnswer;
-	ArrayList<Course> CourseList;
+	public ArrayList<Course> CourseList;
+	public ArrayList<String> CourseListName;
 	int accountID;
 	
 	public Account(String name) {
@@ -28,6 +29,7 @@ public class Account {
 			return false;
 		}
 		CourseList.add(newCourse);
+		CourseListName.add(newCourse.Name);
 		return true;
 	}
 	
@@ -36,6 +38,7 @@ public class Account {
 			return false;
 		}
 		CourseList.remove(removedCard);
+		CourseListName.remove(newCourse.Name);
 		return true;
 	}
 	

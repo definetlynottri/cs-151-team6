@@ -13,6 +13,6 @@ public class AfterLogin {
 
     public void gotoMainpage(ActionEvent event) throws IOException {
         Main m = new Main();
-        m.changeScene("sample.fxml");
+        m.changeScene("CourseBrowser.fxml");
     }
 }

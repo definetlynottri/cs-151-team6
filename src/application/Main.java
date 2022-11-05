@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import objects.Account;
+import objects.Course;
 
 import java.io.IOException;
 
@@ -13,6 +14,7 @@ public class Main extends Application {
 
     private static Stage stg;
     private static Account currentAccount;
+    private static Course currentCourse;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -27,12 +29,18 @@ public class Main extends Application {
         Parent pane = FXMLLoader.load(getClass().getResource(fxml));
         stg.getScene().setRoot(pane);
     }
-    public static setCurrAcc(Account acc) {
-    	this.currentAccount= acc;
+    public static void setCurrAcc(Account acc) {
+    	currentAccount= acc;
     }
     public static Account getCurrAcc() {
-    	
+    	return currentAccount;
     }
+    public static Course getCurrentCourse() {
+		return currentCourse;
+	}
+    public static void setCurrentCourse(Course currentCourse) {
+		Main.currentCourse = currentCourse;
+	}
 
     public static void main(String[] args) {
         launch(args);
