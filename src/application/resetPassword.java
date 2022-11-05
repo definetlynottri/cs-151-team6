@@ -33,12 +33,11 @@ public class resetPassword {
 
     private void checkPassword() throws IOException {
         Main m = new Main();
-        
         if(changingPassword.getText().isEmpty() && securityQuestion.getText().isEmpty() && username.getText().isEmpty())
         	invalidInput.setText("Please enter your data.");
         else if(!changingPassword.getText().toString().equals(repassword.getText().toString()))
         	invalidInput.setText("Passwords don't match! Try again");
-        else {
+        else { // insert into database if proper fields are populated
         	boolean result = DBAccess.resetPassword(username.getText(), securityQuestion.getText(), changingPassword.getText());
         	if(result)
         		m.changeScene("success.fxml");

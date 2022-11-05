@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import objects.Account;
 import objects.Card;
 import objects.Course;
 
@@ -239,6 +240,32 @@ public class DBAccess {
 	    }
 		return cardList;
 	}
+	
+	/**
+	 * Gets an arraylist of courses
+	 * @param accountID the id of the account to find courses for
+	 * @return an arraylist of courses for a given account
+	 */
+	public final static ArrayList<Course> getCourses(int accountID) {
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		try {
+			Statement statement = DBConnect.getConnection().createStatement();
+			ResultSet rs = statement.executeQuery("SELECT id, name FROM courses WHERE accountID=" + accountID);
+			while(rs.next()) {
+				// gets the values from the database
+				int courseID = rs.getInt("id");
+				String cName = rs.getString("name");
+				
+				// Creates and adds the card
+				Course tCourse = new Course(courseID, cName, getCards(courseID));
+				courseList.add(tCourse); // adds on the card to the list
+			}
+		} catch (SQLException e) {
+	        System.out.println(e.getMessage());
+	    }
+		return courseList;
+	}
+	
 	/**
 	 * Loads a course from the database
 	 * @param courseID primary key of the course to load
@@ -259,7 +286,37 @@ public class DBAccess {
 		return course;
 	}
 	
-	public final static int checkAccount(String username, String password) {
+	/**
+	 * Loads an account object from a database
+	 * @param accountID the account id
+	 * @return an Account object with data from the database
+	 */
+	public final static Account loadAccount(int accountID) {
+		Account account = null;
+		try {
+			Statement statement = DBConnect.getConnection().createStatement();
+			ResultSet rs = statement.executeQuery("SELECT id, username, password, securityQuestion FROM accounts WHERE id =" + accountID);
+			if(rs.next()) {
+				int id = rs.getInt("id");
+				String uName = rs.getString("username");
+				String pass = rs.getString("password");
+				String sQuest = rs.getString("securityQuestion");
+				ArrayList<Course> arrCards = DBAccess.getCourses(accountID);
+				account = new Account(id, uName, pass, sQuest, arrCards);
+			}
+		} catch (SQLException e) {
+	        System.out.println(e.getMessage());
+	    }
+		return account;
+	}
+	
+	/**
+	 * Checks whether a username and password matches, returns the primary key if they do
+	 * @param username the username of the account
+	 * @param password the password of the account
+	 * @return the primary key of the account with the account+password combination
+	 */
+	public final static int getAccount(String username, String password) {
 		String sql = "SELECT id FROM accounts WHERE username=? AND password=?";
 		try {
 			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);

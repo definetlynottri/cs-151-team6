@@ -11,13 +11,23 @@ public class Account {
 	
 	public Account(String name) {
 		this.Username=name;
-		this.CourseList = new ArrayList<>();
+		this.CourseList = new ArrayList<Course>();
 	}
-	public boolean addCourse(Course newcard) {
-		if(CourseList.contains(newcard)) {
+	
+	public Account(int aID, String uName, String pass, String sAnswer, ArrayList<Course> cList) {
+		Password = pass;
+		Username = uName;
+		SecAnswer = sAnswer;
+		CourseList = cList;
+		accountID = aID;
+		
+	}
+	
+	public boolean addCourse(Course newCourse) {
+		if(CourseList.contains(newCourse)) {
 			return false;
 		}
-		CourseList.add(newcard);
+		CourseList.add(newCourse);
 		return true;
 	}
 	
@@ -45,6 +55,15 @@ public class Account {
 			return true;
 		}
 		return false;
+	}
+	
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append(String.format("Account(ID:%d - username:%s - Courses:\n", accountID, Username));
+		for(Course course:CourseList) {
+			str.append(course);
+		}
+		return str.toString();
 	}
 	
 }

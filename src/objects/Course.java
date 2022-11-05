@@ -23,6 +23,7 @@ public class Course {
 		this.CardList = tCourse.CardList; // loads cards from the database
 	}
 	
+	
 	public Course(int cID, String inName, ArrayList<Card> cList) {
 		this.courseID = cID;
 		this.Name = inName;

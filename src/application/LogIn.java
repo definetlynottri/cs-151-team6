@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import objects.Account;
 import sql.DBAccess;
 import javafx.event.ActionEvent;
 
@@ -48,9 +49,11 @@ public class LogIn {
         else {
         	String uName = username.getText();
         	String pass = password.getText();
-        	int result = DBAccess.checkAccount(uName, pass);
+        	int result = DBAccess.getAccount(uName, pass);
             if(result != -1) {
-            	System.out.println("Success! AccountID:" + result);
+            	Account curAccount = DBAccess.loadAccount(result);
+            	System.out.println("Loaded Account:");
+            	System.out.println(curAccount);
                 m.changeScene("afterLogin.fxml");
             } else 
             	wrongLogIn.setText("Wrong username or password!");
