@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sql.DBAccess;
 
 public class resetPassword {
 	public resetPassword() {
@@ -32,6 +33,20 @@ public class resetPassword {
 
     private void checkPassword() throws IOException {
         Main m = new Main();
+        
+        if(changingPassword.getText().isEmpty() && securityQuestion.getText().isEmpty() && username.getText().isEmpty())
+        	invalidInput.setText("Please enter your data.");
+        else if(!changingPassword.getText().toString().equals(repassword.getText().toString()))
+        	invalidInput.setText("Passwords don't match! Try again");
+        else {
+        	boolean result = DBAccess.resetPassword(username.getText(), securityQuestion.getText(), changingPassword.getText());
+        	if(result)
+        		m.changeScene("success.fxml");
+        	else
+        		invalidInput.setText("Invalid Username or Security Answer");
+        }
+        	
+        /*	
         if(!securityQuestion.getText().toString().equalsIgnoreCase("sanjose")) {
         	invalidInput.setText("Security question is incorrect! Type again");
         } else if(!username.getText().toString().equals("javafx")) {
@@ -43,5 +58,6 @@ public class resetPassword {
         } else {
         	m.changeScene("success.fxml");;
         }
+        */
     }
 }

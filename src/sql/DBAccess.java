@@ -145,6 +145,30 @@ public class DBAccess {
 	}
 	
 	/**
+	 * Resets the password based on the security answer
+	 * @param username	the username of the account
+	 * @param securityAnswer the security Answer
+	 * @param password the new password
+	 * @return true if successful, false otherwise
+	 */
+	public final static boolean resetPassword(String username, String securityAnswer, String password) {
+		String sql = "UPDATE accounts SET password=? WHERE username=? AND securityQuestion=?";
+		try {
+			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);
+			pStatement.setString(1, password);
+			pStatement.setString(2, username);
+			pStatement.setString(3, securityAnswer);
+			int result = pStatement.executeUpdate();
+			pStatement.close();
+			if(result>0)
+				return true;
+		} catch (SQLException e) {
+	        System.out.println(e.getMessage());
+	    }
+		return false;
+	}
+	
+	/**
 	 * Deletes a card from the database
 	 * @param cardID the primary key for the card to delete
 	 */
