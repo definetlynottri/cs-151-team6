@@ -207,6 +207,21 @@ public class DBAccess {
 	}
 	
 	/**
+	 * Deletes course based on course name and account id
+	 * @param name
+	 */
+	public final static void deleteCourse(String name, int accountID) {
+		String sql = String.format("DELETE FROM courses WHERE name=%s AND accountID=%d", name, accountID);
+		try {
+			Statement statement = DBConnect.getConnection().createStatement();
+			statement.execute(sql);
+			statement.close();
+		} catch (SQLException e) {
+	        System.out.println(e.getMessage());
+	    }
+	}
+	
+	/**
 	 * Deletes the account
 	 * @param accountID the primary key of the account to delete
 	 */

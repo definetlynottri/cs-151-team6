@@ -65,9 +65,33 @@ public class Account {
 		if(!CourseList.contains(removedCard)) {
 			return false;
 		}
-		CourseList.remove(removedCard);
-		CourseListName.remove(removedCard.Name);
+		DBAccess.deleteCourse(removedCard.courseID); // deletes from file
+		CourseList.remove(removedCard); // deletes from memory
+		
+		
+		//CourseListName.remove(removedCard.Name);
+		
 		return true;
+	}
+	
+	/**
+	 * Deletes a course based on name, currently log(n) time
+	 * @param name
+	 */
+	public void deleteCourse(String name) {
+		Course delCourse = null;
+		for(Course course:CourseList) {
+			if(course.Name.equals(name)) {
+				System.out.println("Found match for deletion");
+				delCourse = course;
+			}
+		}
+		
+		// Threading purposes
+		if(delCourse !=null) {
+			DBAccess.deleteCourse(delCourse.courseID);
+			CourseList.remove(delCourse);
+		}
 	}
 	
 	public boolean rename(String newName) {

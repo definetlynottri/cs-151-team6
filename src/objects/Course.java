@@ -68,4 +68,12 @@ public class Course {
 		}
 		return output.toString();
 	}
+	
+	public boolean equals(String inName) {
+		if(this.Name == inName)
+			return true;
+		else
+			return false;
+	}
+	
 }
