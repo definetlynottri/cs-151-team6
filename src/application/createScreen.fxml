@@ -12,7 +12,7 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="226.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="name" layoutX="81.0" layoutY="175.0" text="create" />
+            <TextField fx:id="name" layoutX="81.0" layoutY="175.0" />
             <Button fx:id="create" layoutX="242.0" layoutY="311.0" mnemonicParsing="false" onAction="#CreateCourse" prefHeight="33.0" prefWidth="116.0" text="Create course" />
             <Label layoutX="81.0" layoutY="119.0" prefHeight="37.0" prefWidth="283.0" text="Enter course name to create:">
                <font>
