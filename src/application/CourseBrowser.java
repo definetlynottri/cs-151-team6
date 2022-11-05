@@ -37,7 +37,7 @@ public class CourseBrowser {
 	// goes to card screen when pressing view button with selected item, not implemented in 0.5
 	public void goToChosenCourse(ActionEvent event) throws IOException {
 		 Main m = new Main();
-	     m.changeScene("Sample.fxml");
+	     m.changeScene("viewCourse.fxml");
 	     
 	}
 	
@@ -73,7 +73,7 @@ public class CourseBrowser {
 		}
 		Creation();
 		Main m = new Main();
-	    m.changeScene("courseBrowser.fxml");
+	    m.changeScene("deleteCourse.fxml");
 	}
 	//add logout
 	public void logout(ActionEvent event) throws IOException {
