@@ -40,17 +40,24 @@ public class DBAccess {
 	 * @param name Name of the course
 	 * @param accountID Primary Key for the corresponding account
 	 */
-	public final static void insertCourse(String name, int accountID) {
+	public final static int insertCourse(String name, int accountID) {
+		int key = -1;
 		String sql = "INSERT INTO courses(name,accountID) VALUES(?,?)";
 		try {
-			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);
+			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pStatement.setString(1, name);
 			pStatement.setInt(2, accountID);
 			pStatement.executeUpdate();
 			pStatement.close();
+			
+			ResultSet rs = pStatement.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+			    key = (int)rs.getLong(1);
+			}
 		} catch (SQLException e) {
 	        System.out.println(e.getMessage());
 	    }
+		return key;
 	}
 	
 	/**
@@ -276,7 +283,9 @@ public class DBAccess {
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
 			ResultSet rs = statement.executeQuery("SELECT id, name FROM courses WHERE id =" + courseID);
+			System.out.println("Query Executed");
 			if(rs.next()) {
+				System.out.println("Has Results");
 				ArrayList<Card> arrCards = DBAccess.getCards(courseID);
 				course = new Course(rs.getInt("id"), rs.getString("name"), arrCards);
 			}

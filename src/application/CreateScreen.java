@@ -18,8 +18,11 @@ public class CreateScreen {
 	private Button create;
 	
 	public void CreateCourse(ActionEvent event) throws IOException{
+		Main.getCurrAcc().addCourse(name.getText());
+		/*
 		ArrayList<Card> newClist= new ArrayList<>();
 		Course newCourse= new Course(Main.getCurrAcc().CourseList.size(),name.getText(), newClist);
 		Main.getCurrAcc().addCourse(newCourse);
+		*/
 	}
 }

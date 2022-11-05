@@ -1,6 +1,8 @@
 package objects;
 import java.util.ArrayList;
 
+import sql.DBAccess;
+
 public class Account {
 	String Password;
 	private String Username;
@@ -24,6 +26,14 @@ public class Account {
 		
 	}
 	
+	public ArrayList<String> getCourseNames(){
+		ArrayList<String> names = new ArrayList<String>();
+		for(Course course:CourseList) {
+			names.add(course.getName());
+		}
+		return names;
+	}
+	
 	public boolean addCourse(Course newCourse) {
 		if(CourseList.contains(newCourse)) {
 			return false;
@@ -31,6 +41,20 @@ public class Account {
 		CourseList.add(newCourse);
 		CourseListName.add(newCourse.Name);
 		return true;
+	}
+	
+	public boolean addCourse(String name) {
+		int coursePrimaryKey = DBAccess.insertCourse(name, accountID);
+		System.out.println("Added Course with ID:"+ coursePrimaryKey);
+		if(coursePrimaryKey>=0) {
+			System.out.println("Trying to load course with ID:"+ coursePrimaryKey);
+			Course newCourse = DBAccess.loadCourse(coursePrimaryKey);
+			System.out.println("loaded course with ID:" + coursePrimaryKey);
+			CourseList.add(newCourse);
+			CourseListName.add(newCourse.Name);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean removeCourse(Course removedCard) {

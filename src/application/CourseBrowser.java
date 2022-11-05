@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -28,8 +29,9 @@ public class CourseBrowser {
 	
 	// must call it upon creating and refreshing to populate dropdown
 	public void Creation() {
-		ArrayList<String> options= Main.getCurrAcc().CourseListName;
-		dropdownCourse.setItems((ObservableList<String>) options);
+		ArrayList<String> options= Main.getCurrAcc().getCourseNames();
+		//dropdownCourse.setItems((ObservableList<String>) options);
+		dropdownCourse.setItems(FXCollections.observableArrayList(options));
 	}
 	
 	// goes to card screen when pressing view button with selected item, not implemented in 0.5
