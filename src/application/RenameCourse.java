@@ -2,13 +2,12 @@ package application;
 
 import objects.Course;
 import java.io.IOException;
-//import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
+//change name of courses
 public class RenameCourse {
 	@FXML
 	private TextField currentName;
@@ -17,9 +16,9 @@ public class RenameCourse {
 	@FXML
 	private Button rename;
 	
+	//get name of current name and new name
+	//change names after system find it
 	public void CreateCourse(ActionEvent event) throws IOException {
-		//comment out the error
-		//String name= Main.getCurrentCourse().getName();
 		
 		String oldName = currentName.getText();
 		String newName = changingName.getText();
