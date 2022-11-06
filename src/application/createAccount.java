@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sql.DBAccess;
-
+//create account
 public class createAccount {
 	public createAccount() {
 
@@ -31,7 +31,8 @@ public class createAccount {
     public void userAccount(ActionEvent event) throws IOException {
         checkAccount();
     }
-
+	
+    //check if textfield is filled, password and re entered password is filled, and if it's okay, put it into DataBase
     private void checkAccount() throws IOException {
         Main m = new Main();
         
@@ -49,17 +50,5 @@ public class createAccount {
         	else
         		invalidInput.setText("SQL INSERT failure."); // shouldn't be able to see this, is a GUI locking the database?
         }
-        
-        /*
-        if(username.getText().toString().equals("javafx")) {
-        	invalidInput.setText("Existing username! Type again");
-        } else if(!password.getText().toString().equals(repassword.getText().toString())) {
-        	invalidInput.setText("Password not match! Type again");
-        } else if(username.getText().isEmpty() && password.getText().isEmpty() && securityQuestion.getText().isEmpty()) {
-        	invalidInput.setText("Please enter your data.");
-        } else {
-        	m.changeScene("success.fxml");;
-        }
-        */
     }
 }
