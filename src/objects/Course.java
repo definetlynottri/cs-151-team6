@@ -1,3 +1,7 @@
+/**
+ * Holds the course and the card handling logic
+ */
+
 package objects;
 import java.util.ArrayList;
 import sql.DBAccess;
@@ -7,6 +11,10 @@ public class Course {
 	ArrayList<Card> CardList;
 	int courseID;
 	
+	/**
+	 * Creates an empty new course 
+	 * @param name Name of the new course
+	 */
 	public Course(String name) {
 		this.Name=name;
 		this.CardList = new ArrayList<Card>();
@@ -30,6 +38,11 @@ public class Course {
 		this.CardList = cList;
 	}
 	
+	/**
+	 * Adds on a card to both memory and database
+	 * @param newCard the new card to add on
+	 * @return  true if successful, false otherwise
+	 */
 	public boolean addCard(Card newCard) {
 		if(CardList.contains(newCard)) {
 			return false;
@@ -40,6 +53,11 @@ public class Course {
 		return true;
 	}
 	
+	/**
+	 * Removes a card from the memory and database
+	 * @param removedCard the card to remove
+	 * @return true if successful, false otherwise
+	 */
 	public boolean removeCard(Card removedCard) {
 		if(!CardList.contains(removedCard)) {
 			return false;
@@ -49,6 +67,11 @@ public class Course {
 		return true;
 	}
 	
+	/**
+	 * Renames the course
+	 * @param newName the new name to change the name to
+	 * @return
+	 */
 	public boolean rename(String newName) {
 		System.out.println(String.format("Renamed Course from %s to %s", this.Name, newName));
 		this.Name= newName;

@@ -1,9 +1,13 @@
+/**
+ * Manages the account and card after login
+ */
 package objects;
 import java.util.ArrayList;
 
 import application.Main;
 import sql.DBAccess;
 
+// Holds an account in memory
 public class Account {
 	String Password;
 	private String Username;
@@ -13,11 +17,13 @@ public class Account {
 	public ArrayList<String> CourseListName;
 	int accountID;
 	
+	// Empty account, only use for inserting account
 	public Account(String name) {
 		this.Username=name;
 		this.CourseList = new ArrayList<Course>();
 	}
 	
+	// Full data constructor
 	public Account(int aID, String uName, String pass, String sAnswer, ArrayList<Course> cList) {
 		Password = pass;
 		Username = uName;
@@ -27,6 +33,7 @@ public class Account {
 		
 	}
 	
+	// Gets a list of names of courses
 	public ArrayList<String> getCourseNames(){
 		ArrayList<String> names = new ArrayList<String>();
 		for(Course course:CourseList) {
@@ -35,6 +42,7 @@ public class Account {
 		return names;
 	}
 	
+	// Adds a course object to the account memory and file database
 	public boolean addCourse(Course newCourse) {
 		if(CourseList.contains(newCourse)) {
 			return false;
@@ -58,6 +66,11 @@ public class Account {
 		return tCourse;
 	}
 	
+	/**
+	 * Add a course purely on the name
+	 * @param name the name of the new course
+	 * @return
+	 */
 	public boolean addCourse(String name) {
 		int coursePrimaryKey = DBAccess.insertCourse(name, accountID);
 		//System.out.println("Added Course with ID:"+ coursePrimaryKey);
@@ -78,6 +91,9 @@ public class Account {
 		return false;
 	}
 	
+	/**
+	 * Removes a course based on a course object reference
+	 */
 	public boolean removeCourse(Course removedCard) {
 		if(!CourseList.contains(removedCard)) {
 			return false;
@@ -132,6 +148,9 @@ public class Account {
 		return false;
 	}
 	
+	/**
+	 * Generates a printable string representing this account
+	 */
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		str.append(String.format("Account(ID:%d - username:%s - Courses:\n", accountID, Username));

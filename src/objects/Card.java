@@ -1,3 +1,7 @@
+/**
+ * Holds the card logic
+ */
+
 package objects;
 import sql.DBAccess ;
 
