@@ -24,7 +24,9 @@ public class CourseBrowser {
 	@FXML
 	private Button logout;
 	@FXML
-	private Label showCourse;
+	private Button showCourse;
+	@FXML
+	private Label show;
 	@FXML
 	ComboBox<String> dropdownCourse= new ComboBox<>();
 	
@@ -34,6 +36,11 @@ public class CourseBrowser {
 		ArrayList<String> options= Main.getCurrAcc().getCourseNames();
 		//dropdownCourse.setItems((ObservableList<String>) options);
 		dropdownCourse.setItems(FXCollections.observableArrayList(options));
+	}
+	
+	//show course status of user
+	public void showCourseStat(ActionEvent event) throws IOException {
+	    show.setText("course");
 	}
 	
 	// goes to card screen when pressing view button with selected item, not implemented in 0.5
