@@ -24,6 +24,8 @@ public class CourseBrowser {
 	@FXML
 	private Button logout;
 	@FXML
+	private Label showCourse;
+	@FXML
 	ComboBox<String> dropdownCourse= new ComboBox<>();
 	
 	
