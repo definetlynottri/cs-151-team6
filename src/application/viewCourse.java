@@ -15,6 +15,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 
+//show card of course
 public class viewCourse implements Initializable{
 
 	@FXML
@@ -30,6 +31,7 @@ public class viewCourse implements Initializable{
 	
 	String currentCourse;
 	
+	//show cards as a list 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -44,7 +46,7 @@ public class viewCourse implements Initializable{
 			}	
 		});
 	}
-	
+	//implement return to mainpage function 
 	public void backToBrowser(ActionEvent event) throws IOException {
 		Main m = new Main();
 	    m.changeScene("courseBrowser.fxml");
