@@ -40,7 +40,7 @@ public class CourseBrowser {
 	
 	//show course status of user
 	public void showCourseStat(ActionEvent event) throws IOException {
-	    show.setText("course");
+	    show.setText(Main.getCurrAcc().toString());
 	}
 	
 	// goes to card screen when pressing view button with selected item, not implemented in 0.5
