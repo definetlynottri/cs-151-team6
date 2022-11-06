@@ -20,7 +20,7 @@
             <Button fx:id="view" layoutX="382.0" layoutY="201.0" mnemonicParsing="false" onAction="#goToChosenCourse" prefHeight="33.0" prefWidth="74.0" text="View" />            <Button fx:id="delete" layoutX="382.0" layoutY="250.0" mnemonicParsing="false" onAction="#RefreshAfterDeletion" prefHeight="33.0" prefWidth="74.0" text="Delete" />
             <Button fx:id="rename" layoutX="382.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToRenameScreen" prefHeight="33.0" prefWidth="74.0" text="Rename" />
             <Button fx:id="logout" layoutX="516.0" layoutY="354.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
-            <Label fx:id="showCourse" layoutX="98.0" layoutY="290.0" />
+            <Label fx:id="show" layoutX="98.0" layoutY="290.0" />
             <Button fx:id="showCourse" layoutX="29.0" layoutY="354.0" mnemonicParsing="false" onAction="#showCourseStat" text="Show course">
                <font>
                   <Font size="9.0" />
