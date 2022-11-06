@@ -11,8 +11,9 @@ import javafx.stage.Stage;
 import objects.Account;
 import sql.DBAccess;
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
+
+//help user to login
 public class LogIn {
 
     public LogIn() {
@@ -36,13 +37,15 @@ public class LogIn {
     public void userLogIn(ActionEvent event) throws IOException {
         checkLogin();
     }
+    //implement button that lead to create account page
     public void createAccount(ActionEvent event) throws IOException {
     	m.changeScene("createAccount.fxml");
     }
+    //implement button that lead to reset password page
     public void resetPassword(ActionEvent event) throws IOException {
     	m.changeScene("resetPassword.fxml");
     }
-
+    //check if textfield are filled, and match input to data from DataBase
     private void checkLogin() throws IOException {
         if(username.getText().isEmpty() || password.getText().isEmpty()) 
         	wrongLogIn.setText("Please enter your data.");
@@ -59,16 +62,5 @@ public class LogIn {
             } else 
             	wrongLogIn.setText("Wrong username or password!");
         }
-    	/*
-        if(username.getText().toString().equals("javafx") && password.getText().toString().equals("151")) {
-            wrongLogIn.setText("Success!");
-
-            m.changeScene("afterLogin.fxml");
-        } else if(username.getText().isEmpty() && password.getText().isEmpty()) {
-            wrongLogIn.setText("Please enter your data.");
-        } else {
-            wrongLogIn.setText("Wrong username or password!");
-        }
-        */
     }
 }
