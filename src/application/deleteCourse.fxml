@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateScreen">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.deleteCourse">
 
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="226.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="name" layoutX="81.0" layoutY="175.0" />
-            <Button fx:id="create" layoutX="242.0" layoutY="311.0" mnemonicParsing="false" onAction="#CreateCourse" prefHeight="33.0" prefWidth="116.0" text="Create course" />
-            <Label layoutX="81.0" layoutY="119.0" prefHeight="37.0" prefWidth="283.0" text="Enter course name to create:">
+            <Button fx:id="delete" layoutX="242.0" layoutY="311.0" mnemonicParsing="false" onAction="#delCourse" prefHeight="33.0" prefWidth="116.0" text="Delete" />
+            <Label layoutX="81.0" layoutY="119.0" prefHeight="37.0" prefWidth="283.0" text="Enter deleting course name:">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

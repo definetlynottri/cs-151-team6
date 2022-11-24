@@ -40,17 +40,24 @@ public class DBAccess {
 	 * @param name Name of the course
 	 * @param accountID Primary Key for the corresponding account
 	 */
-	public final static void insertCourse(String name, int accountID) {
+	public final static int insertCourse(String name, int accountID) {
+		int key = -1;
 		String sql = "INSERT INTO courses(name,accountID) VALUES(?,?)";
 		try {
-			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);
+			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pStatement.setString(1, name);
 			pStatement.setInt(2, accountID);
 			pStatement.executeUpdate();
 			pStatement.close();
+			
+			ResultSet rs = pStatement.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+			    key = (int)rs.getLong(1);
+			}
 		} catch (SQLException e) {
 	        System.out.println(e.getMessage());
 	    }
+		return key;
 	}
 	
 	/**
@@ -128,6 +135,17 @@ public class DBAccess {
 	    }
 	}
 	
+	public final static void renameCourse(String oldName, String newName, int accountID) {
+		String sql = String.format("UPDATE courses SET name=%s WHERE name=%s AND accountID=%d", newName, oldName, accountID);
+		try {
+			Statement statement = DBConnect.getConnection().createStatement();
+			statement.execute(sql);
+			statement.close();
+		} catch (SQLException e) {
+	        System.out.println(e.getMessage());
+	    }
+	}
+	
 	/**
 	 * Modifies the password for an account
 	 * @param accountID the account database id for the password change
@@ -190,6 +208,21 @@ public class DBAccess {
 	 */
 	public final static void deleteCourse(int courseID) {
 		String sql = "DELETE FROM courses WHERE id = " + courseID;
+		try {
+			Statement statement = DBConnect.getConnection().createStatement();
+			statement.execute(sql);
+			statement.close();
+		} catch (SQLException e) {
+	        System.out.println(e.getMessage());
+	    }
+	}
+	
+	/**
+	 * Deletes course based on course name and account id
+	 * @param name
+	 */
+	public final static void deleteCourse(String name, int accountID) {
+		String sql = String.format("DELETE FROM courses WHERE name=%s AND accountID=%d", name, accountID);
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
 			statement.execute(sql);

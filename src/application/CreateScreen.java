@@ -11,15 +11,16 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+//create course 
 public class CreateScreen {
 	@FXML
 	private TextField name;
 	@FXML
 	private Button create;
-	
+	//create course and add it to DataBase
 	public void CreateCourse(ActionEvent event) throws IOException{
-		ArrayList<Card> newClist= new ArrayList<>();
-		Course newCourse= new Course(Main.getCurrAcc().CourseList.size(),name.getText(), newClist);
-		Main.getCurrAcc().addCourse(newCourse);
+		Main.getCurrAcc().addCourse(name.getText());
+		Main m = new Main();
+		m.changeScene("courseBrowser.fxml");
 	}
 }

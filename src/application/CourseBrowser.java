@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -23,13 +24,23 @@ public class CourseBrowser {
 	@FXML
 	private Button logout;
 	@FXML
+	private Button showCourse;
+	@FXML
+	private Label show;
+	@FXML
 	ComboBox<String> dropdownCourse= new ComboBox<>();
 	
 	
 	// must call it upon creating and refreshing to populate dropdown
 	public void Creation() {
-		ArrayList<String> options= Main.getCurrAcc().CourseListName;
-		dropdownCourse.setItems((ObservableList<String>) options);
+		ArrayList<String> options= Main.getCurrAcc().getCourseNames();
+		//dropdownCourse.setItems((ObservableList<String>) options);
+		dropdownCourse.setItems(FXCollections.observableArrayList(options));
+	}
+	
+	//show course status of user
+	public void showCourseStat(ActionEvent event) throws IOException {
+	    show.setText(Main.getCurrAcc().toString());
 	}
 	
 	// goes to card screen when pressing view button with selected item, not implemented in 0.5
@@ -40,7 +51,11 @@ public class CourseBrowser {
 			}
 		}
 		 Main m = new Main();
+<<<<<<< HEAD
 	     m.changeScene("ViewCards.fxml");
+=======
+	     m.changeScene("viewCourse.fxml");
+>>>>>>> e87e52f9d0af2e24ce4731d6971b30acbeef5623
 	     
 	}
 	
@@ -52,7 +67,7 @@ public class CourseBrowser {
 			}
 		}
 		 Main m = new Main();
-	     m.changeScene("CreateCourse.fxml");
+	     m.changeScene("createScreen.fxml");
 	}
 	
 	//goes to rename screen with selected item, uses static course in main to pass to next page
@@ -63,7 +78,7 @@ public class CourseBrowser {
 			}
 		}
 		Main m = new Main();
-	    m.changeScene("RenameCourse.fxml");
+	    m.changeScene("renameCourse.fxml");
 	}
 	
 	// deletes the item then refreshes 
@@ -76,7 +91,7 @@ public class CourseBrowser {
 		}
 		Creation();
 		Main m = new Main();
-	    m.changeScene("CourseBrowser.fxml");
+	    m.changeScene("deleteCourse.fxml");
 	}
 	//add logout
 	public void logout(ActionEvent event) throws IOException {

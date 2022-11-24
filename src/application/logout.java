@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
+//show logout success message and button to login page
 public class logout {
 
     @FXML
