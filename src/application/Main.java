@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import objects.Account;
+import objects.Card;
 import objects.Course;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class Main extends Application {
     private static Stage stg;
     private static Account currentAccount;
     private static Course currentCourse;
+    public static Card currentCard;
 
     @Override
     public void start(Stage primaryStage) throws Exception{

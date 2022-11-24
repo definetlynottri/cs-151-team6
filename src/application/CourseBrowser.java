@@ -34,8 +34,13 @@ public class CourseBrowser {
 	
 	// goes to card screen when pressing view button with selected item, not implemented in 0.5
 	public void goToChosenCourse(ActionEvent event) throws IOException {
+		for(int i=0; i< Main.getCurrAcc().CourseList.size(); i++) {
+			if(Main.getCurrAcc().CourseList.get(i).Name== dropdownCourse.getValue()) {
+				Main.setCurrentCourse( Main.getCurrAcc().CourseList.get(i));
+			}
+		}
 		 Main m = new Main();
-	     m.changeScene("Sample.fxml");
+	     m.changeScene("ViewCards.fxml");
 	     
 	}
 	

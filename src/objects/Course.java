@@ -4,7 +4,7 @@ import sql.DBAccess;
 
 public class Course {
 	public String Name;
-	ArrayList<Card> CardList;
+	public ArrayList<Card> CardList;
 	int courseID;
 	
 	public Course(String name) {
