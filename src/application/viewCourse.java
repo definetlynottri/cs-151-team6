@@ -1,5 +1,6 @@
 package application;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,9 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
+import javafx.scene.control.TextField;
 
 //show card of course
 public class viewCourse implements Initializable{
@@ -27,6 +26,15 @@ public class viewCourse implements Initializable{
 	@FXML
 	private Button back;
 	
+	@FXML
+	private Button openCourse;
+	
+	@FXML
+	private TextField courseName;
+	
+	@FXML
+	private Label invalidInput;
+	//change this one to data from DB
 	String[] course = {"A","B","C"};
 	
 	String currentCourse;
@@ -46,6 +54,24 @@ public class viewCourse implements Initializable{
 			}	
 		});
 	}
+	
+	
+	public void goToViewCards(ActionEvent event) throws IOException {
+		Main m = new Main();
+		// check course name is valid
+		if(courseName.getText().isEmpty()) {
+			invalidInput.setText("Please enter your data.");
+		}
+		for (int i = 0; i < course.length; i++) {
+			if (course[i].equals(courseName.getText().toString())) {
+				m.changeScene("viewCards.fxml");
+			} 
+			if(i == course.length-1) {
+				invalidInput.setText("Invalid course name");
+			}
+		}
+	}
+	
 	//implement return to mainpage function 
 	public void backToBrowser(ActionEvent event) throws IOException {
 		Main m = new Main();
