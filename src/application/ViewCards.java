@@ -95,6 +95,8 @@ public class ViewCards {
 			CurrentCard= CardList.get(CurrentIndex);
 		}
 		CurrentCard.UpdateLearned();
+		question.setText(CurrentCard.getUpperText());
+		answer.setText(CurrentCard.getLowerText());
 	}
 	// views previous card in List
 	public void PrevCard() {
@@ -108,6 +110,8 @@ public class ViewCards {
 			
 		}
 		CurrentCard.UpdateLearned();
+		question.setText(CurrentCard.getUpperText());
+		answer.setText(CurrentCard.getLowerText());
 	}
 	
 	// goes to create new edit Screen with selected card
