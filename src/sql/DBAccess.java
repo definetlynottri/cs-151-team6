@@ -248,15 +248,24 @@ public class DBAccess {
 	}
 	
 	/**
-	 * Gets an ArrayList<Card> of a desired course
+	 * Gets an ArrayList<Card> of a desired course, can get all, learned, or unlearned cards
 	 * @param courseID the id of the course
+	 * @param learnedChoice 'u' for unlearned cards, 'l' for learned cards, anything else for all cards
 	 * @return an ArrayList<Card> for the entered course
 	 */
-	public final static ArrayList<Card> getCards(int courseID) {
+	public final static ArrayList<Card> getCards(int courseID, char learnedChoice) {
 		ArrayList<Card> cardList = new ArrayList<Card>();
+		String learnedString = "";
+		switch(learnedChoice) { // handles the selecting of learned/unlearned cards
+			case 'u':
+				learnedString = " AND learned=0";
+			case 'l':
+				learnedString = " AND learned=1";
+		}
+		
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
-			ResultSet rs = statement.executeQuery("SELECT id, learned, upperText, lowerText  FROM cards WHERE courseID=" + courseID);
+			ResultSet rs = statement.executeQuery("SELECT id, learned, upperText, lowerText  FROM cards WHERE courseID=" + courseID + learnedString);
 			while(rs.next()) {
 				// gets the values from the database
 				int cardID = rs.getInt("id");
@@ -272,6 +281,15 @@ public class DBAccess {
 	        System.out.println(e.getMessage());
 	    }
 		return cardList;
+	}
+	
+	/**
+	 * Helper method for requesting all cards instead of only learned/unlearned
+	 * @param courseID DB id of the course
+	 * @return ArrayList<Card> of all the cards in the course
+	 */
+	public final static ArrayList<Card> getCards(int courseID) {
+		return getCards(courseID, 'a');
 	}
 	
 	/**

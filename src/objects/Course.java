@@ -39,6 +39,30 @@ public class Course {
 	}
 	
 	/**
+	 * Gets an arraylist of learned cards
+	 * @return ArrayList<Card> of learned cards for this course
+	 */
+	public ArrayList<Card> getLearned() {
+		return DBAccess.getCards(this.courseID, 'l');
+	}
+	
+	/**
+	 * Gets an arraylist of unlearned cards
+	 * @return ArrayList<Card> of unlearned cards for this course
+	 */
+	public ArrayList<Card> getUnlearned() {
+		return DBAccess.getCards(this.courseID, 'u');
+	}
+	
+	/**
+	 * Gets an arraylist of all cards from the DB
+	 * @return ArrayList<Card> of all cards for this course
+	 */
+	public ArrayList<Card> getAllCards(){
+		return DBAccess.getCards(this.courseID);
+	}
+	
+	/**
 	 * Adds on a card to both memory and database
 	 * @param newCard the new card to add on
 	 * @return  true if successful, false otherwise
