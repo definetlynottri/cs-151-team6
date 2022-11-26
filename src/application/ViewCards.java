@@ -128,7 +128,8 @@ public class ViewCards {
 		Main.currentCard=CurrentCard;
 		Main.getCurrentCourse().addCard(CurrentCard);
 		Main m= new Main();
-		m.changeScene("EditCard.fxml");
+		//changed edit card to add card
+		m.changeScene("AddCard.fxml");
 	}
 	
 }
