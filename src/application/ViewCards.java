@@ -50,7 +50,7 @@ public class ViewCards {
 		}
 	}
 	
-	
+	// I have added simple methods to get an ArrayList of learned/unlearned/all cards in the Course.java file
 	//I'm not sure how can user select Learned, Unlearned or All in this method,
 	//so I made a seperated class so that users can choose Learned, Unlearned or All
 	//If anyone have an idea for this, plz share it. 

@@ -259,8 +259,10 @@ public class DBAccess {
 		switch(learnedChoice) { // handles the selecting of learned/unlearned cards
 			case 'u':
 				learnedString = " AND learned=0";
+				break;
 			case 'l':
 				learnedString = " AND learned=1";
+				break;
 		}
 		
 		try {
