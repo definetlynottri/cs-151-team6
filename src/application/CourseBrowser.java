@@ -29,6 +29,11 @@ public class CourseBrowser {
 	private Label show;
 	@FXML
 	ComboBox<String> dropdownCourse= new ComboBox<>();
+	@FXML
+	private Button deleteAccount;
+	@FXML
+	private Button modifyAccount;
+
 	
 	
 	// must call it upon creating and refreshing to populate dropdown
@@ -51,12 +56,8 @@ public class CourseBrowser {
 			}
 		}
 		 Main m = new Main();
-<<<<<<< HEAD
-	     m.changeScene("ViewCards.fxml");
-=======
+	     //m.changeScene("ViewCards.fxml");
 	     m.changeScene("viewCourse.fxml");
->>>>>>> e87e52f9d0af2e24ce4731d6971b30acbeef5623
-	     
 	}
 	
 	// goes to create screen with selected item, uses static course in main to pass to next page
@@ -99,5 +100,16 @@ public class CourseBrowser {
 	     m.changeScene("logout.fxml");
 	}
 	
-	 
+	//delete account
+	public void deleteAccount(ActionEvent event) throws IOException {
+		 Main m = new Main();
+	     m.changeScene("success.fxml");
+	}
+	
+	//modify Account 
+	public void modifyAccount(ActionEvent event) throws IOException {
+		 Main m = new Main();
+	     m.changeScene("modifyAccount.fxml");
+	}
 }
+
