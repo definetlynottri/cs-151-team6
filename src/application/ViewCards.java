@@ -24,7 +24,7 @@ public class ViewCards {
 	
 	ArrayList<Card> CardList= Main.getCurrentCourse().CardList;
 	int CurrentIndex=0;
-	Card CurrentCard= CardList.get(0);
+	Card CurrentCard= CardList.isEmpty()?(new Card(-1, false, "Empty Course", "Empty Course")):CardList.get(0);
 	String SortSelection= "All";
 	
 	
