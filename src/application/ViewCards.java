@@ -27,6 +27,11 @@ public class ViewCards {
 	Card CurrentCard= CardList.isEmpty()?(new Card(-1, false, "Empty Course", "Empty Course")):CardList.get(0);
 	String SortSelection= "All";
 	
+	//shows question and answer of the first card 
+	public void initialize() {
+		question.setText(CurrentCard.getUpperText());
+		answer.setText(CurrentCard.getLowerText());
+	}
 	
 	//exits to Course BRowser
 	public void exit() throws IOException {
