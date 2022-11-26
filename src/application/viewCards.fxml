@@ -11,16 +11,14 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="226.0" BorderPane.alignment="CENTER">
          <children>
-         <Label fx:id="question" layoutX="201.0" layoutY="98.0" prefHeight="54.0" prefWidth="0.0">
+         <Label fx:id="question" layoutX="201.0" layoutY="98.0">
                <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
-            <Label fx:id="answer" layoutX="201.0" layoutY="209.0" prefHeight="54.0" prefWidth="0.0">
+                  <Font size="20.0" />
+               </font></Label>
+            <Label fx:id="answer" layoutX="201.0" layoutY="209.0">
                <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
+                  <Font size="20.0" />
+               </font></Label>
             <Button layoutX="462.0" layoutY="310.0" mnemonicParsing="false" onAction="#NextCard" text="Next">
                <font>
                   <Font size="20.0" />
