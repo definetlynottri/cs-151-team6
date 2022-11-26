@@ -4,6 +4,8 @@
 
 package objects;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import sql.DBAccess;
 
 public class Course {
@@ -43,7 +45,9 @@ public class Course {
 	 * @return ArrayList<Card> of learned cards for this course
 	 */
 	public ArrayList<Card> getLearned() {
-		return DBAccess.getCards(this.courseID, 'l');
+		ArrayList<Card> tCards = DBAccess.getCards(this.courseID, 'l');
+		Collections.shuffle(tCards);
+		return tCards;
 	}
 	
 	/**
@@ -51,7 +55,9 @@ public class Course {
 	 * @return ArrayList<Card> of unlearned cards for this course
 	 */
 	public ArrayList<Card> getUnlearned() {
-		return DBAccess.getCards(this.courseID, 'u');
+		ArrayList<Card> tCards =  DBAccess.getCards(this.courseID, 'u');
+		Collections.shuffle(tCards);
+		return tCards;
 	}
 	
 	/**
@@ -59,7 +65,9 @@ public class Course {
 	 * @return ArrayList<Card> of all cards for this course
 	 */
 	public ArrayList<Card> getAllCards(){
-		return DBAccess.getCards(this.courseID);
+		ArrayList<Card> tCards =  DBAccess.getCards(this.courseID);
+		Collections.shuffle(tCards);
+		return tCards;
 	}
 	
 	/**

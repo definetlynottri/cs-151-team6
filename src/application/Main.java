@@ -10,6 +10,7 @@ import objects.Card;
 import objects.Course;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -17,6 +18,7 @@ public class Main extends Application {
     private static Account currentAccount;
     private static Course currentCourse;
     public static Card currentCard;
+    public static ArrayList<Card> viewCardList = null;
 
     @Override
     public void start(Stage primaryStage) throws Exception{

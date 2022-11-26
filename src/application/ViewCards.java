@@ -22,12 +22,20 @@ public class ViewCards {
 	@FXML
 	private CheckBox checkBox;
 	
-	ArrayList<Card> CardList= Main.getCurrentCourse().CardList;
+	ArrayList<Card> CardList;
 	int CurrentIndex;
 	Card CurrentCard;
 	String SortSelection= "All";
 	
 	public ViewCards() {
+		// Decides wether to load the shuffled or unshuffled list to the view
+		if(Main.viewCardList == null) {
+			this.CardList = Main.getCurrentCourse().CardList;
+		} else {
+			this.CardList = Main.viewCardList;
+		}
+		
+		// Handles empty courses
 		if(CardList.isEmpty()) {
 			CurrentCard = new Card(-1, false, "Empty Course", "Empty Course");
 			CurrentIndex = -1;
@@ -35,6 +43,8 @@ public class ViewCards {
 			CurrentCard = CardList.get(0);
 			CurrentIndex = 0;
 		}
+		
+		
 	}
 	
 	//shows question and answer of the first card 

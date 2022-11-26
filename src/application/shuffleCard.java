@@ -18,16 +18,20 @@ public class shuffleCard {
 	@FXML
 	private Button all;
 	
+	/*
 	ArrayList<Card> CardList= Main.getCurrentCourse().CardList;
 	int CurrentIndex=0;
 	Card CurrentCard= CardList.get(0);
 	String SortSelection= "All";
+	*/
 	
 
 	
-	HashSet <Card>  Shuffled= new HashSet<>();
+	//HashSet <Card>  Shuffled= new HashSet<>();
 	public void learned() throws IOException {
-
+		Main.viewCardList = Main.getCurrentCourse().getLearned();
+		backToViewCard();
+		/*
 		for(int i=0; i< CardList.size(); i++ ) {
 			if(CardList.get(i).getLearned()==true) {
 				Shuffled.add(CardList.get(i));
@@ -36,10 +40,13 @@ public class shuffleCard {
 		CardList = new ArrayList<>(Shuffled);
 		CurrentIndex=0;
 		CurrentCard= CardList.get(0);
+		*/
 	}
 	
 	public void notLearned() throws IOException {
-
+		Main.viewCardList = Main.getCurrentCourse().getUnlearned();
+		backToViewCard();
+		/*
 			for(int i=0; i< CardList.size(); i++ ){
 				if(CardList.get(i).getLearned()==false){
 					Shuffled.add(CardList.get(i));
@@ -48,15 +55,20 @@ public class shuffleCard {
 			CardList = new ArrayList<>(Shuffled);
 			CurrentIndex=0;
 			CurrentCard= CardList.get(0);
+		*/
 	}	
 	
 	public void shuffleAll() throws IOException {
+		Main.viewCardList = Main.getCurrentCourse().getAllCards();
+		backToViewCard();
+		/*
 		for(int i=0; i< CardList.size(); i++ ){
 			Shuffled.add(CardList.get(i));
 		}
 		CardList = new ArrayList<>(Shuffled);
 		CurrentIndex=0;
 		CurrentCard= CardList.get(0);
+		*/
 	}
 	
 	public void backToViewCard() throws IOException {
