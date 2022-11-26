@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import objects.Course;
 
 //show card of course
 public class viewCourse implements Initializable{
@@ -64,7 +65,8 @@ public class viewCourse implements Initializable{
 		}
 		for (int i = 0; i < course.length; i++) {
 			if (course[i].equals(courseName.getText().toString())) {
-				m.setCurrentCourse(null);
+				Course inCourse = Main.getCurrAcc().findCourse(courseName.getText().toString()); // gets the selected course
+				Main.setCurrentCourse(inCourse); // updates the working course
 				m.changeScene("viewCards.fxml");
 			} 
 			if(i == course.length-1) {
