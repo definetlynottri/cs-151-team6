@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +39,7 @@ public class CourseBrowser {
 	
 	// must call it upon creating and refreshing to populate dropdown
 	public void Creation() {
-		ArrayList<String> options= Main.getCurrAcc().getCourseNames();
+		ArrayList<String> options= new ArrayList<>(Arrays.asList(Main.getCurrAcc().getCourseNames()));
 		//dropdownCourse.setItems((ObservableList<String>) options);
 		dropdownCourse.setItems(FXCollections.observableArrayList(options));
 	}

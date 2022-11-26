@@ -33,6 +33,7 @@ public class Account {
 		
 	}
 	
+	/*
 	// Gets a list of names of courses
 	public ArrayList<String> getCourseNames(){
 		ArrayList<String> names = new ArrayList<String>();
@@ -41,6 +42,21 @@ public class Account {
 		}
 		return names;
 	}
+	*/
+	
+	/**
+	 * Gets the names of the courses
+	 * @return
+	 */
+	public String[] getCourseNames() {
+		String[] reNames = new String[this.CourseList.size()];
+		for(int i=0; i<this.CourseList.size(); i++) {
+			reNames[i] = CourseList.get(i).getName();
+		}
+		return reNames;
+	}
+	
+	
 	
 	// Adds a course object to the account memory and file database
 	public boolean addCourse(Course newCourse) {
@@ -147,6 +163,7 @@ public class Account {
 		}
 		return false;
 	}
+	
 	
 	/**
 	 * Generates a printable string representing this account

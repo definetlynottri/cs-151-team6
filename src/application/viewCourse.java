@@ -42,7 +42,7 @@ public class viewCourse implements Initializable{
 	//show cards as a list 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		course = Main.getCurrAcc().getCourseNames();
 		myListView.getItems().addAll(course);
 		
 		myListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -64,6 +64,7 @@ public class viewCourse implements Initializable{
 		}
 		for (int i = 0; i < course.length; i++) {
 			if (course[i].equals(courseName.getText().toString())) {
+				m.setCurrentCourse(null);
 				m.changeScene("viewCards.fxml");
 			} 
 			if(i == course.length-1) {
