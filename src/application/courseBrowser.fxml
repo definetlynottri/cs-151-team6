@@ -26,6 +26,16 @@
                   <Font size="9.0" />
                </font>
             </Button>
+            <Button fx:id="modifyAccount" layoutX="502.0" layoutY="320.0" mnemonicParsing="false" onAction="#modifyAccount" text="Modify account">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteAccount" layoutX="503.0" layoutY="287.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete account">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </center>
