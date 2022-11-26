@@ -191,14 +191,16 @@ public class DBAccess {
 	 * Deletes a card from the database
 	 * @param cardID the primary key for the card to delete
 	 */
-	public final static void deleteCard(int cardID) {
+	public final static boolean deleteCard(int cardID) {
 		String sql = "DELETE FROM cards WHERE id = " + cardID;
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
 			statement.execute(sql);
 			statement.close();
+			return true;
 		} catch (SQLException e) {
 	        System.out.println(e.getMessage());
+	        return false;
 	    }
 	}
 	

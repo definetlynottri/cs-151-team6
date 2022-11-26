@@ -91,6 +91,7 @@ public class Course {
 		return true;
 	}
 	
+	
 	/**
 	 * Renames the course
 	 * @param newName the new name to change the name to

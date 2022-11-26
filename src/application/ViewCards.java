@@ -23,11 +23,22 @@ public class ViewCards {
 	private CheckBox checkBox;
 	
 	ArrayList<Card> CardList= Main.getCurrentCourse().CardList;
-	int CurrentIndex=0;
-	Card CurrentCard= CardList.isEmpty()?(new Card(-1, false, "Empty Course", "Empty Course")):CardList.get(0);
+	int CurrentIndex;
+	Card CurrentCard;
 	String SortSelection= "All";
 	
+	public ViewCards() {
+		if(CardList.isEmpty()) {
+			CurrentCard = new Card(-1, false, "Empty Course", "Empty Course");
+			CurrentIndex = -1;
+		} else {
+			CurrentCard = CardList.get(0);
+			CurrentIndex = 0;
+		}
+	}
+	
 	//shows question and answer of the first card 
+	@FXML
 	public void initialize() {
 		question.setText(CurrentCard.getUpperText());
 		answer.setText(CurrentCard.getLowerText());
@@ -126,10 +137,12 @@ public class ViewCards {
 		m.changeScene("EditCard.fxml");
 	}
 	
-	// need to implement delete it from DB and show next card
-		public void DeleteCard() throws IOException {
-			NextCard();
-		}
+	// deletes the card and shows next card
+	public void DeleteCard() throws IOException {
+		Main.getCurrentCourse().removeCard(this.CurrentCard); //update both memory and DB
+		CardList.remove(this.CurrentIndex); // update the shuffled list
+		NextCard(); // gets the next card
+	}
 	
 	// HAVE NOT ADDED SQL ID, USED PLACEHOLDER 0, creates new card then goes to edit screen
 	public void AddCard() throws IOException {
