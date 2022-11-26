@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
@@ -17,15 +17,15 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <PasswordField fx:id="UT" layoutX="300.0" layoutY="117.0" promptText="Edit question" />
             <Button fx:id="Finished" layoutX="242.0" layoutY="311.0" mnemonicParsing="false" onAction="#FinishedCard" prefHeight="33.0" prefWidth="116.0" text="Edit" />
             <Label fx:id="invalidInput" layoutX="350.0" layoutY="120.0" textFill="RED" />
-            <PasswordField fx:id="LT" layoutX="300.0" layoutY="203.0" promptText="Edit answer" />
             <Label layoutX="89.0" layoutY="200.0" prefHeight="30.0" prefWidth="189.0" text="Edit answer:">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
+            <TextField fx:id="UT" layoutX="284.0" layoutY="117.0" promptText="Edit question" />
+            <TextField fx:id="LT" layoutX="284.0" layoutY="203.0" promptText="Edit answer" />
          </children>
       </AnchorPane>
    </center>
