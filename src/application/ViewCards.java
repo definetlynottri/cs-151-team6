@@ -41,8 +41,8 @@ public class ViewCards {
 			CurrentCard = new Card(-1, false, "Empty Course", "Empty Course");
 			CurrentIndex = -1;
 		} else {
-			CurrentCard = CardList.get(0);
-			CurrentIndex = 0;
+			CurrentIndex = CardList.size()-1;
+			CurrentCard = CardList.get(CurrentIndex);
 		}
 		
 		
@@ -127,7 +127,12 @@ public class ViewCards {
 	// deletes the card and shows next card
 	public void DeleteCard() throws IOException {
 		Main.getCurrentCourse().removeCard(this.CurrentCard); //update both memory and DB
-		CardList.remove(this.CurrentIndex); // update the shuffled list
+		//CardList.remove(this.CurrentIndex); // update the shuffled list
+		
+		// adds on the card if the current list is shuffled
+		if(Main.getCurrentCourse().CardList != Main.viewCardList) // checks if this is a shuffled list
+			CardList.remove(CurrentCard); // adds the new card to the shuffled card list
+		
 		if(CardList.isEmpty()) {
 			CurrentCard = new Card(-1, false, "Empty Course", "Empty Course");
 			CurrentIndex = -1;
@@ -141,6 +146,7 @@ public class ViewCards {
 	 * @throws IOException
 	 */
 	public void AddCard() throws IOException {
+		// Creates a dumby card that gets updated by AddCard
 		Card CurrentCard= new Card(-1,false,"insert text here", "insert text here");
 		Main.currentCard=CurrentCard;
 		Main.getCurrentCourse().addCard(CurrentCard); //update both memory and DB
@@ -150,8 +156,6 @@ public class ViewCards {
 			CardList.add(CurrentCard); // adds the new card to the shuffled card list
 		
 		// Updates scene/info
-		this.CurrentIndex = CardList.size()-1;
-		updateCard(); // update the card info on addition
 		Main m= new Main();
 		//changed edit card to add card
 		m.changeScene("AddCard.fxml");

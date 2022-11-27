@@ -15,7 +15,7 @@ public class Account {
 	private String SecAnswer;
 	public ArrayList<Course> CourseList;
 	public ArrayList<String> CourseListName;
-	int accountID;
+	private int accountID;
 	
 	// Empty account, only use for inserting account
 	public Account(String name) {
@@ -109,18 +109,19 @@ public class Account {
 	
 	/**
 	 * Removes a course based on a course object reference
+	 * Preferred over deleteCourse as no O(n) search is required
 	 */
-	public boolean removeCourse(Course removedCard) {
-		if(!CourseList.contains(removedCard)) {
+	public boolean removeCourse(Course removedCourse) {
+		if(!CourseList.contains(removedCourse)) {
 			return false;
 		}
-		DBAccess.deleteCourse(removedCard.courseID); // deletes from file
-		CourseList.remove(removedCard); // deletes from memory
+		DBAccess.deleteCourse(removedCourse.courseID); // deletes from file
+		CourseList.remove(removedCourse); // deletes from memory
 		return true;
 	}
 	
 	/**
-	 * Deletes a course based on name, currently log(n) time
+	 * Deletes a course based on name, currently O(n) time
 	 * @param name
 	 */
 	public void deleteCourse(String name) {
@@ -179,4 +180,7 @@ public class Account {
 		return str.toString();
 	}
 	
+	public int getID() {
+		return this.accountID;
+	}
 }

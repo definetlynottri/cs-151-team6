@@ -253,14 +253,16 @@ public class DBAccess {
 	 * Deletes the account
 	 * @param accountID the primary key of the account to delete
 	 */
-	public final static void deleteAccount(int accountID) {
+	public final static boolean deleteAccount(int accountID) {
 		String sql = "DELETE FROM accounts WHERE id = " + accountID;
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
 			statement.execute(sql);
 			statement.close();
+			return true;
 		} catch (SQLException e) {
 	        System.out.println(e.getMessage());
+	        return false;
 	    }
 	}
 	

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CourseBrowser">
@@ -11,13 +12,21 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="226.0" BorderPane.alignment="CENTER">
          <children>
-         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="114.0" prefHeight="113.0" prefWidth="199.0" text="Welcome!">
+         <ListView fx:id="coursesListView" layoutX="90.0" layoutY="140.0" prefHeight="200.0" prefWidth="200.0" />
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="100.0" prefHeight="20.0" prefWidth="199.0" text="Courses:">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="20.0" prefHeight="113.0" prefWidth="199.0" text="Welcome!">
                <font>
                   <Font name="System Bold" size="37.0" />
                </font>
             </Label>
+            
             <Button fx:id="create" layoutX="382.0" layoutY="154.0" mnemonicParsing="false" onAction="#goToCreateScreen" prefHeight="33.0" prefWidth="74.0" text="Create" />
-            <Button fx:id="view" layoutX="382.0" layoutY="201.0" mnemonicParsing="false" onAction="#goToChosenCourse" prefHeight="33.0" prefWidth="74.0" text="View" />            <Button fx:id="delete" layoutX="382.0" layoutY="250.0" mnemonicParsing="false" onAction="#RefreshAfterDeletion" prefHeight="33.0" prefWidth="74.0" text="Delete" />
+            <Button fx:id="view" layoutX="382.0" layoutY="201.0" mnemonicParsing="false" onAction="#goToChosenCourse" prefHeight="33.0" prefWidth="74.0" text="View" />            
+            <Button fx:id="delete" layoutX="382.0" layoutY="250.0" mnemonicParsing="false" onAction="#deleteCourse" prefHeight="33.0" prefWidth="74.0" text="Delete" />
             <Button fx:id="rename" layoutX="382.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToRenameScreen" prefHeight="33.0" prefWidth="74.0" text="Rename" />
             <Button fx:id="logout" layoutX="516.0" layoutY="354.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
             <Label fx:id="show" layoutX="50.0" layoutY="200.0" />
