@@ -49,7 +49,7 @@ public class createAccount {
         	if(sqlSuccess) 
         		m.changeScene("success.fxml");
         	else
-        		invalidInput.setText("SQL INSERT failure."); // shouldn't be able to see this, is a GUI locking the database?
+        		invalidInput.setText("SQL INSERT failure."); // shouldn't be able to see this, is something locking the database?
         }
     }
 }

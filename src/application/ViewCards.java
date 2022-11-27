@@ -11,8 +11,6 @@ import objects.Card;
 import objects.Course;
 
 public class ViewCards {
-	//Both are Empty labels that will print card question and answer
-	//Can't check if it works as it seems there is error in this class
 	@FXML
 	private Label question;
 	
@@ -22,11 +20,14 @@ public class ViewCards {
 	@FXML
 	private CheckBox checkBox;
 	
-	ArrayList<Card> CardList;
-	int CurrentIndex;
-	Card CurrentCard;
+	ArrayList<Card> CardList; // active list of cards, can be all, learned, or unlearned
+	int CurrentIndex; // index of the active card
+	Card CurrentCard; // cursor for the active card in the viewer
 	String SortSelection= "All";
 	
+	/**
+	 * Constructor, handles shuffled/unshuffled list logic and what to display if course is empty
+	 */
 	public ViewCards() {
 		// Decides wether to load the shuffled or unshuffled list to the view
 		if(Main.viewCardList == null) {
@@ -85,41 +86,9 @@ public class ViewCards {
 		}
 	}
 	
-	// I have added simple methods to get an ArrayList of learned/unlearned/all cards in the Course.java file
-	//I'm not sure how can user select Learned, Unlearned or All in this method,
-	//so I made a seperated class so that users can choose Learned, Unlearned or All
-	//If anyone have an idea for this, plz share it. 
-	
-	//shuffles the deck according to the condition of Learned Unlearned or All
-//	public void Shuffle(){
-//		ArrayList<Card> CardList= Main.getCurrentCourse().CardList;
-//		HashSet <Card>  Shuffled= new HashSet<>();
-//		if(SortSelection== "Learned") {
-//			for(int i=0; i< CardList.size(); i++ ) {
-//				if(CardList.get(i).getLearned()==true) {
-//					Shuffled.add(CardList.get(i));
-//				}
-//			}
-//		}
-//		else if(SortSelection== "Not Learned"){
-//			for(int i=0; i< CardList.size(); i++ ){
-//				if(CardList.get(i).getLearned()==false){
-//					Shuffled.add(CardList.get(i));
-//				}
-//			}
-//		}
-//		else{
-//			for(int i=0; i< CardList.size(); i++ ){
-//				Shuffled.add(CardList.get(i));
-//			}
-//		}
-//		CardList = new ArrayList<>(Shuffled);
-//		CurrentIndex=0;
-//		CurrentCard= CardList.get(0);
-//		
-//	}
-	
-	//views next card in list
+	/**
+	 * Gets the next card in the list, wraps around to the start if necessary 
+	 */
 	public void NextCard() {
 		if(CurrentIndex>=CardList.size()-1) {
 			CurrentIndex=0;
@@ -129,14 +98,12 @@ public class ViewCards {
 			CurrentIndex++;
 			CurrentCard= CardList.get(CurrentIndex);
 		}
-		//CurrentCard.UpdateLearned();
-		//question.setText(CurrentCard.getUpperText());
-		//answer.setText(CurrentCard.getLowerText());
-		//checkBox.setSelected(false);
 		updateCard();
-		//System.out.println("Index:"+ CardList.get(CurrentIndex));
 	}
-	// views previous card in List
+	
+	/**
+	 * Gets the previous card in the list, wraps around to the end if necessary
+	 */
 	public void PrevCard() {
 		if(CurrentIndex<=0) {
 			CurrentIndex=CardList.size()-1;
@@ -147,12 +114,7 @@ public class ViewCards {
 			CurrentCard= CardList.get(CurrentIndex);
 			
 		}
-		//CurrentCard.UpdateLearned();
-		//question.setText(CurrentCard.getUpperText());
-		//answer.setText(CurrentCard.getLowerText());
-		//checkBox.setSelected(false);
 		updateCard();
-		//System.out.println("Index:"+ CardList.get(CurrentIndex));
 	}
 	
 	// goes to create new edit Screen with selected card
@@ -174,7 +136,10 @@ public class ViewCards {
 			NextCard(); // gets the next card
 	}
 	
-	// HAVE NOT ADDED SQL ID, USED PLACEHOLDER 0, creates new card then goes to edit screen
+	/**
+	 * Adds a card to memory, database, and if viewing a shuffled list of cards, the shuffled list as well
+	 * @throws IOException
+	 */
 	public void AddCard() throws IOException {
 		Card CurrentCard= new Card(-1,false,"insert text here", "insert text here");
 		Main.currentCard=CurrentCard;

@@ -116,10 +116,6 @@ public class Account {
 		}
 		DBAccess.deleteCourse(removedCard.courseID); // deletes from file
 		CourseList.remove(removedCard); // deletes from memory
-		
-		
-		//CourseListName.remove(removedCard.Name);
-		
 		return true;
 	}
 	
@@ -128,13 +124,6 @@ public class Account {
 	 * @param name
 	 */
 	public void deleteCourse(String name) {
-		/*
-		Course delCourse = null;
-		for(Course course:CourseList) {
-			if(course.Name.equals(name))
-				delCourse = course;
-		}
-		*/
 		Course delCourse = findCourse(name);
 		
 		// Threading purposes
