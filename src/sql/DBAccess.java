@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import objects.Account;
 import objects.Card;
 import objects.Course;
@@ -24,7 +25,7 @@ public class DBAccess {
 		try {
 			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);
 			pStatement.setString(1, username);
-			pStatement.setString(2, password);
+			pStatement.setString(2, new PassUtil().encrypt(password)); // added encrypt statement
 			pStatement.setString(3, securityQuestion);
 			pStatement.executeUpdate();
 			pStatement.close();
@@ -166,7 +167,7 @@ public class DBAccess {
 	 * @param password the new password
 	 */
 	public final static void modifyPassword(int accountID, String password) {
-		String sql = "UPDATE accounts SET password = \"" + password + "\" WHERE id = " + accountID;
+		String sql = "UPDATE accounts SET password = \"" + new PassUtil().encrypt(password) + "\" WHERE id = " + accountID;
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
 			statement.execute(sql);
@@ -188,7 +189,7 @@ public class DBAccess {
 		String sql = "UPDATE accounts SET password=? WHERE username=? AND securityQuestion=?";
 		try {
 			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);
-			pStatement.setString(1, password);
+			pStatement.setString(1, new PassUtil().encrypt(password));
 			pStatement.setString(2, username);
 			pStatement.setString(3, securityAnswer);
 			int result = pStatement.executeUpdate();
@@ -390,7 +391,7 @@ public class DBAccess {
 		try {
 			PreparedStatement pStatement = DBConnect.getConnection().prepareStatement(sql);
 			pStatement.setString(1, username);
-			pStatement.setString(2, password);
+			pStatement.setString(2, new PassUtil().encrypt(password)); // added encrypt statement
 			ResultSet rs = pStatement.executeQuery();
 			// get results
 			if(rs.next())

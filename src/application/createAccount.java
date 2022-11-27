@@ -43,6 +43,7 @@ public class createAccount {
         else { // adds the account to the database
         	String uName = username.getText();
         	String pass = password.getText();
+        	
         	String sQuest = securityQuestion.getText();
         	Boolean sqlSuccess = DBAccess.insertAccount(uName, pass, sQuest); // true if inserted into db, false otherwise
         	if(sqlSuccess) 

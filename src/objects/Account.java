@@ -177,4 +177,17 @@ public class Account {
 		return str.toString();
 	}
 	
+	/**
+	 * Gets a list of course names in a string for printing
+	 * @return string with the course names, each on one line
+	 */
+	public String Courses() {
+		StringBuilder str = new StringBuilder();
+		str.append(String.format("Account(Username:%s - Courses:\n", Username));
+		for(Course course:CourseList) {
+			str.append(String.format("->Course:%s\n", course.Name));
+		}
+		return str.toString();
+	}
+	
 }

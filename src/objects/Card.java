@@ -46,6 +46,24 @@ public class Card {
 		return successful;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if(o == this) // checks if the jvm ids match
+			return true;
+		
+		// returns false if object is not an instance of cards
+		if(!(o instanceof Card))
+			return false;
+		
+		// Cast and compare members
+		Card compareCard =  (Card) o;
+		if(this.cardID == compareCard.cardID)
+			return true;
+		else
+			return false;
+		
+	}
+	
 	public String getUpperText() {return UpperText;}
 	public String getLowerText() {return LowerText;}
 	public boolean getLearned() {return learned;}

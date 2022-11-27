@@ -134,7 +134,7 @@ public class ViewCards {
 		//answer.setText(CurrentCard.getLowerText());
 		//checkBox.setSelected(false);
 		updateCard();
-		System.out.println("Index:"+ CardList.get(CurrentIndex));
+		//System.out.println("Index:"+ CardList.get(CurrentIndex));
 	}
 	// views previous card in List
 	public void PrevCard() {
@@ -152,7 +152,7 @@ public class ViewCards {
 		//answer.setText(CurrentCard.getLowerText());
 		//checkBox.setSelected(false);
 		updateCard();
-		System.out.println("Index:"+ CardList.get(CurrentIndex));
+		//System.out.println("Index:"+ CardList.get(CurrentIndex));
 	}
 	
 	// goes to create new edit Screen with selected card
@@ -166,16 +166,27 @@ public class ViewCards {
 	public void DeleteCard() throws IOException {
 		Main.getCurrentCourse().removeCard(this.CurrentCard); //update both memory and DB
 		CardList.remove(this.CurrentIndex); // update the shuffled list
-		NextCard(); // gets the next card
+		if(CardList.isEmpty()) {
+			CurrentCard = new Card(-1, false, "Empty Course", "Empty Course");
+			CurrentIndex = -1;
+			updateCard(); // updates the view to show empty course
+		} else
+			NextCard(); // gets the next card
 	}
 	
 	// HAVE NOT ADDED SQL ID, USED PLACEHOLDER 0, creates new card then goes to edit screen
 	public void AddCard() throws IOException {
-		Card CurrentCard= new Card(0,false,"insert text here", "insert text here");
+		Card CurrentCard= new Card(-1,false,"insert text here", "insert text here");
 		Main.currentCard=CurrentCard;
 		Main.getCurrentCourse().addCard(CurrentCard); //update both memory and DB
-		CardList.add(CurrentCard); // adds the new card to the active card list
+		
+		// adds on the card if the current list is shuffled
+		if(Main.getCurrentCourse().CardList != Main.viewCardList) // checks if this is a shuffled list
+			CardList.add(CurrentCard); // adds the new card to the shuffled card list
+		
+		// Updates scene/info
 		this.CurrentIndex = CardList.size()-1;
+		updateCard(); // update the card info on addition
 		Main m= new Main();
 		//changed edit card to add card
 		m.changeScene("AddCard.fxml");

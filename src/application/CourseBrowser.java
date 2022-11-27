@@ -44,9 +44,10 @@ public class CourseBrowser {
 		dropdownCourse.setItems(FXCollections.observableArrayList(options));
 	}
 	
-	//show course status of user
-	public void showCourseStat(ActionEvent event) throws IOException {
-	    show.setText(Main.getCurrAcc().toString());
+	// Displays courses on init
+	@FXML
+	public void initialize() {
+		show.setText(Main.getCurrAcc().Courses());
 	}
 	
 	// goes to card screen when pressing view button with selected item, not implemented in 0.5

@@ -21,11 +21,6 @@
             <Button fx:id="rename" layoutX="382.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToRenameScreen" prefHeight="33.0" prefWidth="74.0" text="Rename" />
             <Button fx:id="logout" layoutX="516.0" layoutY="354.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
             <Label fx:id="show" layoutX="50.0" layoutY="200.0" />
-            <Button fx:id="showCourse" layoutX="29.0" layoutY="354.0" mnemonicParsing="false" onAction="#showCourseStat" text="Show course">
-               <font>
-                  <Font size="9.0" />
-               </font>
-            </Button>
             <Button fx:id="modifyAccount" layoutX="502.0" layoutY="320.0" mnemonicParsing="false" onAction="#modifyAccount" text="Modify account">
                <font>
                   <Font size="10.0" />
