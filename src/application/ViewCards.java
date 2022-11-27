@@ -121,7 +121,7 @@ public class ViewCards {
 	
 	//views next card in list
 	public void NextCard() {
-		if(CurrentIndex==CardList.size()-1) {
+		if(CurrentIndex>=CardList.size()-1) {
 			CurrentIndex=0;
 			CurrentCard= CardList.get(0);
 		}
@@ -134,10 +134,11 @@ public class ViewCards {
 		//answer.setText(CurrentCard.getLowerText());
 		//checkBox.setSelected(false);
 		updateCard();
+		System.out.println("Index:"+ CardList.get(CurrentIndex));
 	}
 	// views previous card in List
 	public void PrevCard() {
-		if(CurrentIndex==0) {
+		if(CurrentIndex<=0) {
 			CurrentIndex=CardList.size()-1;
 			CurrentCard= CardList.get(CurrentIndex);
 		}
@@ -151,6 +152,7 @@ public class ViewCards {
 		//answer.setText(CurrentCard.getLowerText());
 		//checkBox.setSelected(false);
 		updateCard();
+		System.out.println("Index:"+ CardList.get(CurrentIndex));
 	}
 	
 	// goes to create new edit Screen with selected card
@@ -171,7 +173,9 @@ public class ViewCards {
 	public void AddCard() throws IOException {
 		Card CurrentCard= new Card(0,false,"insert text here", "insert text here");
 		Main.currentCard=CurrentCard;
-		Main.getCurrentCourse().addCard(CurrentCard);
+		Main.getCurrentCourse().addCard(CurrentCard); //update both memory and DB
+		CardList.add(CurrentCard); // adds the new card to the active card list
+		this.CurrentIndex = CardList.size()-1;
 		Main m= new Main();
 		//changed edit card to add card
 		m.changeScene("AddCard.fxml");
