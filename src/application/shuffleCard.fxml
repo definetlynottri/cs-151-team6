@@ -19,7 +19,6 @@
             </Label>
             <Button fx:id="notLearned" layoutX="254.0" layoutY="219.0" mnemonicParsing="false" onAction="#notLearned" prefHeight="37.0" prefWidth="110.0" text="Not Learned Only" />
             <Button fx:id="Learned" layoutX="81.0" layoutY="217.0" mnemonicParsing="false" onAction="#learned" prefHeight="39.0" prefWidth="100.0" text="Learned Only" />
-            <Button layoutX="463.0" layoutY="353.0" mnemonicParsing="false" onAction="#backToViewCard" text="Back to Card View" />
          </children>
       </AnchorPane>
    </center>
