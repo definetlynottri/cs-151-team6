@@ -64,6 +64,7 @@ public class ViewCards {
 	
 	//exits to Course BRowser
 	public void exit() throws IOException {
+		Main.viewCardList = null; // clears the active list
 		Main m= new Main();
 		m.changeScene("courseBrowser.fxml");
 	}
