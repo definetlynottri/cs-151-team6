@@ -15,14 +15,20 @@ public class EditCard {
 	private TextField LT;
 	@FXML
 	private Button Finished;
+	@FXML
+	private Label invalidInput;
 	
 	
 	Card CurrentCard= Main.currentCard;
 	
 	
 	public void FinishedCard() throws IOException{
-		CurrentCard.UpdateCard(UT.getText(), LT.getText());
+		if(UT.getText().isEmpty() || LT.getText().isEmpty()) {
+			invalidInput.setText("Please enter your data.");
+		} else {
+			CurrentCard.UpdateCard(UT.getText(), LT.getText());
 		Main m = new Main();
 		m.changeScene("ViewCards.fxml");
+		}
 	}
 }
