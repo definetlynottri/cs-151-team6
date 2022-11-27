@@ -3,6 +3,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -31,20 +32,25 @@ public class viewCourse implements Initializable{
 	private Button openCourse;
 	
 	@FXML
-	private TextField courseName;
-	
-	@FXML
 	private Label invalidInput;
-	//change this one to data from DB
-	String[] course = {"A","B","C"};
+	ArrayList<String> courseNames;
+	ArrayList<Course> courseIndexes;
 	
 	String currentCourse;
 	
 	//show cards as a list 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		course = Main.getCurrAcc().getCourseNames();
-		myListView.getItems().addAll(course);
+		this.courseNames = new ArrayList<String>();
+		this.courseIndexes = new ArrayList<Course>();
+		
+		// populate the two listview lists
+		for(Course c:Main.getCurrAcc().CourseList) {
+			courseNames.add(c.getName()); // add the name of the course
+			courseIndexes.add(c); // add the course index
+		}
+
+		myListView.getItems().addAll(courseNames);
 		
 		myListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 
@@ -57,22 +63,31 @@ public class viewCourse implements Initializable{
 	}
 	
 	
+	/**
+	 * Gets the selection from the listview and goes to the course's cards
+	 */
 	public void goToViewCards(ActionEvent event) throws IOException {
 		Main m = new Main();
+		int selection = myListView.getSelectionModel().getSelectedIndex(); // gets the selected index
+		Main.setCurrentCourse(courseIndexes.get(selection)); // changes the course to the selection
+		m.changeScene("viewCards.fxml"); // pops the view cards screen
+		
+		/*
 		// check course name is valid
 		if(courseName.getText().isEmpty()) {
 			invalidInput.setText("Please enter your data.");
 		}
-		for (int i = 0; i < course.length; i++) {
-			if (course[i].equals(courseName.getText().toString())) {
+		for (int i = 0; i < courseNames.size(); i++) {
+			if (courseNames.get(i).equals(courseName.getText().toString())) {
 				Course inCourse = Main.getCurrAcc().findCourse(courseName.getText().toString()); // gets the selected course
 				Main.setCurrentCourse(inCourse); // updates the working course
 				m.changeScene("viewCards.fxml");
 			} 
-			if(i == course.length-1) {
+			if(i == courseNames.size()-1) {
 				invalidInput.setText("Invalid course name");
 			}
 		}
+		*/
 	}
 	
 	//implement return to mainpage function 
