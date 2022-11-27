@@ -101,7 +101,7 @@ public class DBAccess {
 	 * @param question optional, enter null to not update
 	 * @param answer optional, enter null to not update
 	 */
-	public final static void modifyCard(int cardID, boolean learned, String question, String answer) {
+	public final static boolean modifyCard(int cardID, boolean learned, String question, String answer) {
 		StringBuilder sql = new StringBuilder("UPDATE cards SET");
 		sql.append(" learned = " + (learned?1:0));
 		if(question != null)
@@ -113,8 +113,11 @@ public class DBAccess {
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
 			statement.execute(sql.toString());
+			statement.close(); // closes the statement
+			return true;
 		} catch (SQLException e) {
 	        System.out.println(e.getMessage());
+	        return false;
 	    }
 	}
 	
@@ -123,26 +126,37 @@ public class DBAccess {
 	 * @param courseID the course ID in the database
 	 * @param name the new name for the course
 	 */
-	public final static void modifyCourse(int courseID, String name) {
+	public final static boolean modifyCourse(int courseID, String name) {
 		String sql = "UPDATE courses SET name = \"" + name + "\" WHERE id = " + courseID;
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
 			statement.execute(sql);
 			statement.close();
+			return true;
 			
 		} catch (SQLException e) {
 	        System.out.println(e.getMessage());
+	        return false;
 	    }
 	}
 	
-	public final static void renameCourse(String oldName, String newName, int accountID) {
+	/**
+	 * Renames the course
+	 * @param oldName the old name of the course
+	 * @param newName the new name of the course
+	 * @param accountID the DB account id 
+	 * @return true if successful, false otherwise
+	 */
+	public final static boolean renameCourse(String oldName, String newName, int accountID) {
 		String sql = String.format("UPDATE courses SET name=%s WHERE name=%s AND accountID=%d", newName, oldName, accountID);
 		try {
 			Statement statement = DBConnect.getConnection().createStatement();
 			statement.execute(sql);
 			statement.close();
+			return true;
 		} catch (SQLException e) {
 	        System.out.println(e.getMessage());
+	        return false;
 	    }
 	}
 	

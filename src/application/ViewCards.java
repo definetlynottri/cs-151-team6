@@ -50,8 +50,16 @@ public class ViewCards {
 	//shows question and answer of the first card 
 	@FXML
 	public void initialize() {
+		updateCard();
+	}
+	
+	/**
+	 * Updates the card being shown, called in the next/prev card plus the initialize methods
+	 */
+	private void updateCard() {
 		question.setText(CurrentCard.getUpperText());
 		answer.setText(CurrentCard.getLowerText());
+		checkBox.setSelected(CurrentCard.getLearned());
 	}
 	
 	//exits to Course BRowser
@@ -69,10 +77,10 @@ public class ViewCards {
 	//handle check box
 	public void updateLearned(ActionEvent event) {
 		if(checkBox.isSelected()) {
-			//update card is learned
+			CurrentCard.UpdateLearned(true);
 		}
 		else {
-			//update card is not learned
+			CurrentCard.UpdateLearned(false);
 		}
 	}
 	
@@ -120,9 +128,11 @@ public class ViewCards {
 			CurrentIndex++;
 			CurrentCard= CardList.get(CurrentIndex);
 		}
-		CurrentCard.UpdateLearned();
-		question.setText(CurrentCard.getUpperText());
-		answer.setText(CurrentCard.getLowerText());
+		//CurrentCard.UpdateLearned();
+		//question.setText(CurrentCard.getUpperText());
+		//answer.setText(CurrentCard.getLowerText());
+		//checkBox.setSelected(false);
+		updateCard();
 	}
 	// views previous card in List
 	public void PrevCard() {
@@ -135,9 +145,11 @@ public class ViewCards {
 			CurrentCard= CardList.get(CurrentIndex);
 			
 		}
-		CurrentCard.UpdateLearned();
-		question.setText(CurrentCard.getUpperText());
-		answer.setText(CurrentCard.getLowerText());
+		//CurrentCard.UpdateLearned();
+		//question.setText(CurrentCard.getUpperText());
+		//answer.setText(CurrentCard.getLowerText());
+		//checkBox.setSelected(false);
+		updateCard();
 	}
 	
 	// goes to create new edit Screen with selected card

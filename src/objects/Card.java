@@ -33,10 +33,17 @@ public class Card {
 		DBAccess.modifyCard(cardID, this.learned, UT, LT); 
 		return true;
 	}
-	public Boolean UpdateLearned() {
-		this.learned= true;
-		DBAccess.modifyCard(cardID, this.learned, null, null);
-		return true;
+	
+	/**
+	 * Updates the learned status of a card
+	 * @param inLearned the boolean value of a card's learned status
+	 * @return true if successful, false if something went wrong (card doesn't exist)
+	 */
+	public Boolean UpdateLearned(boolean inLearned) {
+		boolean successful = DBAccess.modifyCard(cardID, inLearned, null, null); // modifies the card in DB
+		if(successful)
+			this.learned= inLearned; // modifies the card in memory if succesful
+		return successful;
 	}
 	
 	public String getUpperText() {return UpperText;}
