@@ -24,7 +24,7 @@
             <PasswordField fx:id="password" layoutX="350.0" layoutY="210.0" promptText="Password" />
             <Button fx:id="modify" layoutX="263.0" layoutY="308.0" mnemonicParsing="false" onAction="#modifyCompleted" prefHeight="33.0" prefWidth="74.0" text="Modify" />
             <Label fx:id="invalidInput" layoutX="350.0" layoutY="120.0" textFill="RED" />
-            <Label layoutX="95.0" layoutY="27.0" prefHeight="37.0" prefWidth="256.0" text="Modify Security Question :">
+            <Label layoutX="95.0" layoutY="27.0" prefHeight="37.0" prefWidth="256.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
