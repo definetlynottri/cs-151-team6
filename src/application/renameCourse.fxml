@@ -13,7 +13,7 @@
       <AnchorPane prefHeight="400.0" prefWidth="226.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="changingName" layoutX="81.0" layoutY="226.0" />
-            <Label fx:id="invalidInput" layoutX="350.0" layoutY="120.0" textFill="RED" />
+            <Label fx:id="invalidInput" layoutX="350.0" layoutY="260.0" textFill="RED" />
             <Button fx:id="rename" layoutX="242.0" layoutY="311.0" mnemonicParsing="false" onAction="#CreateCourse" prefHeight="33.0" prefWidth="116.0" text="Re-name" />
             <Label layoutX="79.0" layoutY="182.0" prefHeight="37.0" prefWidth="283.0" text="Enter changing course name:">
                <font>
