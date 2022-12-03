@@ -19,10 +19,13 @@ public class RenameCourse {
 	//get name of current name and new name
 	//change names after system find it
 	public void CreateCourse(ActionEvent event) throws IOException {
-		Main.getCurrentCourse().rename(changingName.getText()); // change the name
-		
-		// return to course browser
-		Main m = new Main();
-		m.changeScene("courseBrowser.fxml");
+		if(changingName.getText().isEmpty()) 
+        	invalidInput.setText("Please enter your data.");
+        else {
+        	Main.getCurrentCourse().rename(changingName.getText()); // change the name
+        	// return to course browser
+        	Main m = new Main();
+        	m.changeScene("courseBrowser.fxml");
+		}
 	}
 }
